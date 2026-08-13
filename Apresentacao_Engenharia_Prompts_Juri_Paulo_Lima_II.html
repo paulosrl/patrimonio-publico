@@ -897,25 +897,47 @@ slides.push({
   <div class="slide" data-kind="philosophy">
     <div class="kicker"><span class="dot"></span>Fundamentos da IA Generativa</div>
     <h2 class="h2">O que é Engenharia de Prompts?</h2>
-    <p class="lede">Desenvolver e refinar instruções para obter os resultados mais precisos e relevantes dos modelos de IA Generativa.</p>
-    <div class="phi-wrap">
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.1);max-width:68ch">Desenvolver e refinar instruções para obter os resultados mais precisos e relevantes dos modelos de IA Generativa.</p>
+    <div class="phi-wrap" style="grid-template-columns: 1fr 1fr 1fr; gap: clamp(16px, 2vw, 36px); align-items: center; margin-top: 0.5em;">
+      
+      <!-- Coluna 1: Imagem ep-01.png -->
+      <div style="display:flex; justify-content:center; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+        <img src="imgs-paulo-lima/ep-01.png" alt="Engenharia de Prompts" style="max-width:100%; max-height:360px; object-fit:contain; border-radius:12px;">
+      </div>
+
+      <!-- Coluna 2: Conceitos & Teoria -->
       <div>
-        <ul class="phi-list">
-          <li><span class="num">1</span><div><b>Teoria:</b> O processo interativo de desenvolver e refinar instruções para modelos de linguagem.</div></li>
-          <li><span class="num">2</span><div><b>A Analogia do Maestro:</b> É como ser o <b>maestro de uma orquestra</b>, ajustando cada instrumento até alcançar a harmonia perfeita.</div></li>
-          <li><span class="num">3</span><div><b>Controle de Qualidade:</b> O alinhamento dos comandos reduz ruídos e garante máxima precisão jurídica.</div></li>
+        <ul class="phi-list" style="gap:1.2em;">
+          <li style="font-size:calc(var(--fs-body) * 1.05); color:#f8fafc; line-height:1.5;">
+            <span class="num" style="width:2.2em; height:2.2em; font-size:1rem; font-weight:800;">1</span>
+            <div><b style="color:#ffffff; font-size:1.15em;">Teoria:</b> O processo interativo de desenvolver e refinar instruções para modelos de IA.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-body) * 1.05); color:#f8fafc; line-height:1.5;">
+            <span class="num" style="width:2.2em; height:2.2em; font-size:1rem; font-weight:800;">2</span>
+            <div><b style="color:#ffffff; font-size:1.15em;">Analogia do Maestro:</b> É como ser o <b style="color:var(--orange-ink)">maestro de uma orquestra</b>, ajustando cada instrumento até alcançar a harmonia perfeita.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-body) * 1.05); color:#f8fafc; line-height:1.5;">
+            <span class="num" style="width:2.2em; height:2.2em; font-size:1rem; font-weight:800;">3</span>
+            <div><b style="color:#ffffff; font-size:1.15em;">Controle de Qualidade:</b> O alinhamento dos comandos reduz ruídos e garante máxima precisão jurídica.</div>
+          </li>
         </ul>
       </div>
-      <div class="phi-compare">
-        <div class="phi-box bad">
-          <div class="tag">❌ Pedido Inicial (Sem Maestro)</div>
-          <p>"Resuma este inquérito policial."<br><span style="font-size:0.85em;color:var(--ink-dimmer)">Gera um resumo genérico e superficial sem foco acusatório.</span></p>
+
+      <!-- Coluna 3: Caixas Comparativas de Exemplo -->
+      <div class="phi-compare" style="gap:18px;">
+        <div class="phi-box bad" style="opacity:1; background:rgba(239,106,106,0.08); border-color:rgba(239,106,106,0.35); padding:1.3em;">
+          <div class="tag" style="font-size:calc(var(--fs-tiny) * 1.15); color:#ff8787;">❌ Pedido Inicial (Sem Maestro)</div>
+          <p style="font-size:calc(var(--fs-small) * 1.18); color:#f1f5f9; font-weight:600; margin-top:0.5em;">"Resuma este inquérito policial."</p>
+          <span style="font-size:calc(var(--fs-small) * 1.02); color:#cbd5e1; display:block; margin-top:6px; line-height:1.4;">Gera um resumo genérico e superficial sem foco acusatório.</span>
         </div>
-        <div class="phi-box good">
-          <div class="tag">✅ Refinamento (Ajustando os Instrumentos)</div>
-          <p>"Agora, foque este resumo apenas nas provas que apontam as qualificadoras do homicídio."<br><span style="font-size:0.85em;color:var(--orange-ink)">Mapeia cirurgicamente elementos de autoria e materialidade.</span></p>
+
+        <div class="phi-box good" style="background:rgba(232,114,12,0.12); border-color:rgba(232,114,12,0.5); padding:1.3em;">
+          <div class="tag" style="font-size:calc(var(--fs-tiny) * 1.15); color:#59d698;">✅ Refinamento (Ajustando os Instrumentos)</div>
+          <p style="font-size:calc(var(--fs-small) * 1.18); color:#ffffff; font-weight:700; margin-top:0.5em;">"Agora, foque este resumo apenas nas provas que apontam as qualificadoras do homicídio."</p>
+          <span style="font-size:calc(var(--fs-small) * 1.02); color:#ffe8d1; display:block; margin-top:6px; line-height:1.4;">Mapeia cirurgicamente elementos de autoria e materialidade.</span>
         </div>
       </div>
+
     </div>
   </div>`
 });
@@ -930,38 +952,38 @@ slides.push({
   <div class="slide" data-kind="agent">
     <div class="kicker"><span class="dot"></span>Arquitetura de Comando</div>
     <h2 class="h2">Os 4 Pilares de um Bom Prompt</h2>
-    <p class="lede">Para que a IA compreenda exatamente o que você precisa, o comando deve conter 4 elementos estruturais indispensáveis.</p>
-    <div class="agenda-grid" style="grid-template-columns:repeat(2,1fr);margin-top:1em">
-      <div class="agenda-card" style="--chue:196">
-        <span class="num">01</span>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.05);max-width:68ch">Para que a IA compreenda exatamente o que você precisa, o comando deve conter 4 elementos estruturais indispensáveis.</p>
+    <div class="agenda-grid" style="grid-template-columns:repeat(2,1fr);margin-top:1em;gap:20px;">
+      <div class="agenda-card" style="--chue:196;padding:1.4em;background:rgba(15,32,64,0.85);border:1px solid rgba(147,197,253,0.25);">
+        <span class="num" style="font-size:1.2rem;color:#93c5fd;font-weight:800;">01</span>
         <div class="tx">
-          <b>Persona (Quem)</b>
-          <span>Quem a IA deve simular.</span>
-          <span style="color:var(--orange-ink);font-size:0.85rem;display:block;margin-top:4px"><i>Ex.: "Atue como Promotor de Justiça com experiência na Defesa do Patrimônio Público e da Moralidade Administrativa."</i></span>
+          <b style="font-size:calc(var(--fs-h3) * 1.1);color:#ffffff;">Persona (Quem)</b>
+          <span style="font-size:calc(var(--fs-small) * 1.1);color:#cbd5e1;margin-top:2px;">Quem a IA deve simular.</span>
+          <span style="color:#e0f2fe;font-size:1.15rem;display:block;margin-top:8px;line-height:1.4;font-weight:500;"><i>Ex.: "Atue como Promotor de Justiça com experiência na Defesa do Patrimônio Público e da Moralidade Administrativa."</i></span>
         </div>
       </div>
-      <div class="agenda-card" style="--chue:215">
-        <span class="num">02</span>
+      <div class="agenda-card" style="--chue:215;padding:1.4em;background:rgba(15,32,64,0.85);border:1px solid rgba(147,197,253,0.25);">
+        <span class="num" style="font-size:1.2rem;color:#93c5fd;font-weight:800;">02</span>
         <div class="tx">
-          <b>Contexto (Fatos)</b>
-          <span>Fatos essenciais.</span>
-          <span style="color:var(--orange-ink);font-size:0.85rem;display:block;margin-top:4px"><i>Ex.: "Analise os documentos em anexo do Inquérito Civil que apura suposto superfaturamento em contrato administrativo."</i></span>
+          <b style="font-size:calc(var(--fs-h3) * 1.1);color:#ffffff;">Contexto (Fatos)</b>
+          <span style="font-size:calc(var(--fs-small) * 1.1);color:#cbd5e1;margin-top:2px;">Fatos essenciais.</span>
+          <span style="color:#e0f2fe;font-size:1.15rem;display:block;margin-top:8px;line-height:1.4;font-weight:500;"><i>Ex.: "Analise os documentos em anexo do Inquérito Civil que apura suposto superfaturamento em contrato administrativo."</i></span>
         </div>
       </div>
-      <div class="agenda-card" style="--chue:158">
-        <span class="num">03</span>
+      <div class="agenda-card" style="--chue:158;padding:1.4em;background:rgba(15,32,64,0.85);border:1px solid rgba(147,197,253,0.25);">
+        <span class="num" style="font-size:1.2rem;color:#93c5fd;font-weight:800;">03</span>
         <div class="tx">
-          <b>Instrução (Ação)</b>
-          <span>O que deve ser feito.</span>
-          <span style="color:var(--orange-ink);font-size:0.85rem;display:block;margin-top:4px"><i>Ex.: "Identifique indícios de dano ao erário e possíveis violações aos princípios da Administração Pública."</i></span>
+          <b style="font-size:calc(var(--fs-h3) * 1.1);color:#ffffff;">Instrução (Ação)</b>
+          <span style="font-size:calc(var(--fs-small) * 1.1);color:#cbd5e1;margin-top:2px;">O que deve ser feito.</span>
+          <span style="color:#e0f2fe;font-size:1.15rem;display:block;margin-top:8px;line-height:1.4;font-weight:500;"><i>Ex.: "Identifique indícios de dano ao erário e possíveis violações aos princípios da Administração Pública."</i></span>
         </div>
       </div>
-      <div class="agenda-card" style="--chue:28">
-        <span class="num">04</span>
+      <div class="agenda-card" style="--chue:28;padding:1.4em;background:rgba(15,32,64,0.85);border:1px solid rgba(147,197,253,0.25);">
+        <span class="num" style="font-size:1.2rem;color:#93c5fd;font-weight:800;">04</span>
         <div class="tx">
-          <b>Formato (Saída)</b>
-          <span>Como entregar a resposta.</span>
-          <span style="color:var(--orange-ink);font-size:0.85rem;display:block;margin-top:4px"><i>Ex.: "Apresente o resultado em uma lista com marcadores."</i></span>
+          <b style="font-size:calc(var(--fs-h3) * 1.1);color:#ffffff;">Formato (Saída)</b>
+          <span style="font-size:calc(var(--fs-small) * 1.1);color:#cbd5e1;margin-top:2px;">Como entregar a resposta.</span>
+          <span style="color:#e0f2fe;font-size:1.15rem;display:block;margin-top:8px;line-height:1.4;font-weight:500;"><i>Ex.: "Apresente o resultado em uma lista com marcadores."</i></span>
         </div>
       </div>
     </div>
