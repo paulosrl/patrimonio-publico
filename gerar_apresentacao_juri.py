@@ -3,8 +3,7 @@
 Gerador de Apresentação HTML — Engenharia de Prompts aplicada ao Tribunal do Júri
 
 Este script pega o template HTML base de referência (Apresentacao_Agentes_Patrimonio_Publico_Rodrigo_04.html)
-e compila a nova apresentação de 17 slides baseada no arquivo de texto em Markdown,
-com melhorias de responsividade para celulares e dispositivos de tela pequena.
+e compila a nova apresentação de 17 slides baseada no arquivo de texto em Markdown.
 
 Uso:
     python3 gerar_apresentacao_juri.py
@@ -139,27 +138,19 @@ slides.push({{
     <div class="agenda-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;margin-top:1.2em">
       <div class="agenda-card" style="--chue:28" onclick="goTo(2)">
         <span class="num">01</span>
-        <span class="ic">\${{iconSvg('spark')}}</span>
         <span class="tx"><b>Fundamentos & Conceito</b><span>Conceito de Prompt, Analogia do Maestro e os 4 Pilares da Estrutura.</span></span>
-        <span class="cnt">Slides 3 a 4</span>
       </div>
       <div class="agenda-card" style="--chue:196" onclick="goTo(4)">
         <span class="num">02</span>
-        <span class="ic">\${{iconSvg('gavel')}}</span>
         <span class="tx"><b>Técnicas Avançadas & Maturidade</b><span>Metaprompting (IA refinando IA) e a Jornada do Usuário (Iniciante a Avançado).</span></span>
-        <span class="cnt">Slides 5 a 6</span>
       </div>
       <div class="agenda-card" style="--chue:355" onclick="goTo(6)">
         <span class="num">03</span>
-        <span class="ic">\${{iconSvg('docsearch')}}</span>
         <span class="tx"><b>Antipadrões & 5 Erros Críticos</b><span>Como NÃO usar a IA e a desconstrução detalhada dos 5 erros mais comuns.</span></span>
-        <span class="cnt">Slides 7 a 12</span>
       </div>
       <div class="agenda-card" style="--chue:158" onclick="goTo(12)">
         <span class="num">04</span>
-        <span class="ic">\${{iconSvg('clipboard')}}</span>
         <span class="tx"><b>Foco Cognitivo, Riscos & Síntese</b><span>Gestão do foco, riscos técnicos (desatualização/alucinação) e checklist final.</span></span>
-        <span class="cnt">Slides 13 a 17</span>
       </div>
     </div>
   </div>`
@@ -643,7 +634,7 @@ slides.push({{
   </div></div>`;
 
   html += `<div class="mgroup"><div class="mgroup-h" style="--chue:196"><span class="d"></span>Técnicas Avançadas & Maturidade</div><div class="mitems">
-    ${item(4, 'Metaprompting: Use a IA para Desenhar seus Próprios Comandos')}
+    ${item(4, 'Metaprompting: Use a IA para Desenhar seus Comandos')}
     ${item(5, 'A Evolução do Usuário: De Respostas Rápidas a Raciocínio Complexo')}
   </div></div>`;
 
@@ -704,7 +695,7 @@ slides.push({{
         f.write(full_html)
 
     print("==========================================================")
-    print("✅ Apresentação gerada com responsividade para celulares!")
+    print("✅ Apresentação gerada com sucesso sem sujeira no Slide 2!")
     print(f"📄 Arquivo: {OUTPUT_FILE}")
     print(f"📦 Tamanho total: {len(full_html)} bytes")
     print("==========================================================")
