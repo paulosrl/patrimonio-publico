@@ -339,6 +339,9 @@ h3.h3{font-size:var(--fs-h3);line-height:1.15;font-weight:800;margin:0 0 .5em 0;
 .slide.active .step-card:nth-child(3) {
   animation: stepFadeIn 0.58s cubic-bezier(0.16, 1, 0.3, 1) 0.67s forwards;
 }
+.slide.active .step-card:nth-child(4) {
+  animation: stepFadeIn 0.58s cubic-bezier(0.16, 1, 0.3, 1) 0.90s forwards;
+}
 
 @keyframes stepFadeIn {
   0% {
@@ -1171,22 +1174,67 @@ slides.push({
   theme: "Cuidados Críticos",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a;box-shadow:0 0 14px #ef6a6a"></span>Antipadrões de Uso</div>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Antipadrões de Uso</div>
     <h2 class="h2">Como NÃO Usar a IA</h2>
-    <p class="lede">Três posturas inadequada que comprometem a eficácia e a segurança da atuação jurídica.</p>
-    <div class="phi-compare" style="grid-template-columns:repeat(3,1fr);display:grid;gap:16px">
-      <div class="phi-box bad">
-        <div class="tag">1. Sem Hipótese</div>
-        <p>Saiba exatamente o que você está procurando antes de iniciar a interação; não use a IA de forma aleatória ou sem uma pergunta de pesquisa definida.</p>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.1);max-width:70ch">Três posturas inadequadas que comprometem a eficácia e a segurança da atuação jurídica.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 2.2fr;gap:28px;align-items:center;margin-top:1em;">
+      
+      <!-- Coluna 1: Imagem Ilustrativa ep-02.png -->
+      <div style="display:flex;justify-content:center;align-items:center;background:rgba(239,68,68,0.06);border:1.5px solid rgba(248,113,113,0.3);border-radius:20px;padding:16px;box-shadow:0 10px 36px rgba(0,0,0,0.4);">
+        <img src="imgs-paulo-lima/ep-02.png" alt="Como NÃO Usar a IA" style="max-width:100%;max-height:380px;object-fit:contain;border-radius:12px;">
       </div>
-      <div class="phi-box bad">
-        <div class="tag">2. Sem Curadoria</div>
-        <p>Saiba como analisar as respostas criticamente; a IA pode cometer erros e você deve validar informações, citações de leis e fundamentos jurídicos.</p>
+
+      <!-- Coluna 2: Os 3 Cartões de Alerta Animados -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        
+        <!-- Cartão 1: Sem Hipótese -->
+        <div class="step-card" style="background:rgba(20,15,30,0.85);border:1.5px solid rgba(248,113,113,0.4);border-radius:18px;padding:1.4em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg, #f87171, #ef4444);"></div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8em;">
+              <span style="font-size:0.8rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.15);padding:0.3em 0.75em;border-radius:999px;border:1px solid rgba(248,113,113,0.3);">Alerta 01</span>
+              <div style="width:2.5em;height:2.5em;color:#f87171;background:rgba(239,68,68,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;">
+                ${iconSvg('alert')}
+              </div>
+            </div>
+            <h3 style="font-size:calc(var(--fs-h3) * 1.05);color:#ffffff;font-weight:800;margin:0 0 0.4em 0;">1. Sem Hipótese</h3>
+          </div>
+          <p style="color:#fecaca;font-size:calc(var(--fs-small) * 1.02);line-height:1.45;margin:0;font-weight:400;">Saiba exatamente o que você está procurando antes de iniciar a interação; não use a IA de forma aleatória ou sem uma pergunta de pesquisa definida.</p>
+        </div>
+
+        <!-- Cartão 2: Sem Curadoria -->
+        <div class="step-card" style="background:rgba(20,15,30,0.85);border:1.5px solid rgba(248,113,113,0.4);border-radius:18px;padding:1.4em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8em;">
+              <span style="font-size:0.8rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.15);padding:0.3em 0.75em;border-radius:999px;border:1px solid rgba(248,113,113,0.3);">Alerta 02</span>
+              <div style="width:2.5em;height:2.5em;color:#f87171;background:rgba(239,68,68,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;">
+                ${iconSvg('shieldsearch')}
+              </div>
+            </div>
+            <h3 style="font-size:calc(var(--fs-h3) * 1.05);color:#ffffff;font-weight:800;margin:0 0 0.4em 0;">2. Sem Curadoria</h3>
+          </div>
+          <p style="color:#fecaca;font-size:calc(var(--fs-small) * 1.02);line-height:1.45;margin:0;font-weight:400;">Saiba como analisar as respostas criticamente; a IA pode cometer erros e você deve validar informações, citações de leis e fundamentos jurídicos.</p>
+        </div>
+
+        <!-- Cartão 3: Sem Direção -->
+        <div class="step-card" style="background:rgba(20,15,30,0.85);border:1.5px solid rgba(248,113,113,0.4);border-radius:18px;padding:1.4em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg, #dc2626, #b91c1c);"></div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8em;">
+              <span style="font-size:0.8rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.15);padding:0.3em 0.75em;border-radius:999px;border:1px solid rgba(248,113,113,0.3);">Alerta 03</span>
+              <div style="width:2.5em;height:2.5em;color:#f87171;background:rgba(239,68,68,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;">
+                ${iconSvg('target')}
+              </div>
+            </div>
+            <h3 style="font-size:calc(var(--fs-h3) * 1.05);color:#ffffff;font-weight:800;margin:0 0 0.4em 0;">3. Sem Direção</h3>
+          </div>
+          <p style="color:#fecaca;font-size:calc(var(--fs-small) * 1.02);line-height:1.45;margin:0;font-weight:400;">Saiba qual o seu objetivo final com a IA; defina se o propósito é resumir um processo, analisar contradições ou redigir um documento antes de enviar o comando.</p>
+        </div>
+
       </div>
-      <div class="phi-box bad">
-        <div class="tag">3. Sem Direção</div>
-        <p>Saiba qual o seu objetivo final com a IA; defina se o propósito é resumir um processo, analisar contradições ou redigir um documento antes de enviar o comando.</p>
-      </div>
+
     </div>
   </div>`
 });
@@ -1199,26 +1247,52 @@ slides.push({
   theme: "Erros Comuns · 1/5",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a"></span>Erro 01 de 05</div>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 01 de 05</div>
     <h2 class="h2">Erro 1: A Persona Inflada</h2>
-    <p class="lede">O excesso de adjetivos gera <b>poluição informacional</b> e reduz a performance da máquina.</p>
-    <div class="phi-wrap">
-      <div class="phi-compare" style="grid-template-columns:1fr">
-        <div class="phi-box bad">
-          <div class="tag">❌ A Armadilha</div>
-          <p>"Você é o melhor jurista do universo, PhD em Harvard, com 200 anos de experiência, conhecedor de todas as leis do mundo e nunca erra."</p>
-          <span style="font-size:0.85em;color:#ef6a6a;display:block;margin-top:6px"><b>O Efeito:</b> Pode causar respostas arrogantes, imprecisas ou genéricas.</span>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">O excesso de adjetivos gera <b style="color:#f87171;">poluição informacional</b> e reduz a performance da IA.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Card 1: A Armadilha (Erro) -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">❌ A Armadilha</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('crack')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Prompt Exagerado & Adjetivado</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #ef4444;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:500;">"Você é o melhor jurista do universo, PhD em Harvard, com 200 anos de experiência, conhecedor de todas as leis do mundo e nunca erra."</p>
+          </div>
         </div>
-        <div class="phi-box good">
-          <div class="tag">✅ A Regra</div>
-          <p>"Você é um promotor de justiça especializado em direito penal, com experiência em análise de inquéritos."</p>
-          <span style="font-size:0.85em;color:#59d698;display:block;margin-top:6px">Seja técnico e direto. Atribua o papel exato necessário para a tarefa.</span>
+        <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#fca5a5;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">⚠️ <b>O Efeito:</b> Pode causar respostas arrogantes, imprecisas, superficiais ou totalmente genéricas.</span>
         </div>
       </div>
-      <div class="side-panel">
-        <h4>Diretrizes</h4>
-        <div class="sc">Evite superlativos desnecessários. Delimite a atuação prática com precisão.</div>
+
+      <!-- Card 2: A Regra (Solução Técnica) -->
+      <div class="step-card" style="background:rgba(10,28,22,0.85);border:1.5px solid rgba(74,222,128,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(34,197,94,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #4ade80, #16a34a);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#86efac;background:rgba(34,197,94,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(74,222,128,0.4);">✅ A Regra</span>
+            <div style="width:3em;height:3em;color:#4ade80;background:rgba(34,197,94,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('user')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Direto & Objetivamente Técnico</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #4ade80;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:600;">"Você é um promotor de justiça especializado em direito penal, com experiência em análise de inquéritos."</p>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Como Funciona:</b> Seja técnico e direto. Atribua o papel exato e os limites necessários para a execução da tarefa.</span>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1231,29 +1305,52 @@ slides.push({
   theme: "Erros Comuns · 2/5",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a"></span>Erro 02 de 05</div>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 02 de 05</div>
     <h2 class="h2">Erro 2: O Prompt Genérico</h2>
-    <p class="lede">Comandos sem escopo delimitado produzem respostas superficiais que resumem o óbvio.</p>
-    <div class="phi-wrap">
-      <div class="phi-compare" style="grid-template-columns:1fr">
-        <div class="phi-box bad">
-          <div class="tag">❌ O Erro</div>
-          <p>"Analise este documento e me diga o que acha."</p>
-          <span style="font-size:0.85em;color:#ef6a6a;display:block;margin-top:6px"><b>Sintoma:</b> Respostas que resumem o óbvio, sem utilidade tática.</span>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Comandos sem escopo delimitado produzem respostas superficiais que resumem o óbvio.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Card 1: O Erro (Genérico) -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">❌ O Erro Genérico</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('docsearch')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Comando Sem Escopo</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #ef4444;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:500;">"Analise este documento e me diga o que acha."</p>
+          </div>
         </div>
-        <div class="phi-box good">
-          <div class="tag">✅ Correção com Escopo Jurídico</div>
-          <p>"Analise criticamente esta denúncia verificando os requisitos do art. 41 do CPP e a suficiência probatória para oferecimento da ação penal."</p>
+        <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#fca5a5;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">⚠️ <b>Sintoma:</b> Respostas extremamente vagas que apenas resumem o óbvio, sem utilidade tática para o processo.</span>
         </div>
       </div>
-      <div class="side-panel">
-        <h4>Por que funciona:</h4>
-        <ol style="margin:0;padding-left:1.2em;color:var(--ink-dim);line-height:1.6">
-          <li>Define claramente o escopo da análise.</li>
-          <li>Ativa o conhecimento jurídico específico da IA (Art. 41 do CPP).</li>
-          <li>Gera respostas táticas focadas.</li>
-        </ol>
+
+      <!-- Card 2: A Correção Escopada -->
+      <div class="step-card" style="background:rgba(10,28,22,0.85);border:1.5px solid rgba(74,222,128,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(34,197,94,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #4ade80, #16a34a);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#86efac;background:rgba(34,197,94,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(74,222,128,0.4);">✅ Correção Escopada</span>
+            <div style="width:3em;height:3em;color:#4ade80;background:rgba(34,197,94,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('gavel')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Delimitação Jurídica Exata</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #4ade80;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:600;">"Analise criticamente esta denúncia verificando os requisitos do art. 41 do CPP e a suficiência probatória para oferecimento da ação penal."</p>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Por que Funciona:</b> Ativa fundamentação legal específica (Art. 41 CPP) e foca a resposta no objetivo tático do Promotor.</span>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1266,19 +1363,53 @@ slides.push({
   theme: "Erros Comuns · 3/5",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a"></span>Erro 03 de 05</div>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 03 de 05</div>
     <h2 class="h2">Erro 3: Misturar Análise e Redação</h2>
-    <p class="lede">Misturar a análise probatória e a escrita da peça final no mesmo comando prejudica ambas as tarefas.</p>
-    <div class="phi-compare" style="grid-template-columns:1fr 1fr">
-      <div class="phi-box bad">
-        <div class="tag">❌ O Erro (Comando Único)</div>
-        <p>"Analise este processo e já escreva a manifestação final em formato oficial do MP, com todas as formalidades, usando linguagem rebuscada e citando pelo menos 10 precedentes."</p>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Misturar a análise probatória e a escrita da peça final no mesmo comando prejudica a qualidade de ambas as tarefas.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Card 1: O Erro (Comando Único) -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">❌ Comando Único Sobregregado</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('mailwarn')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Análise + Redação Juntas</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #ef4444;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.15);font-style:italic;line-height:1.5;margin:0;font-weight:500;">"Analise este processo e já escreva a manifestação final em formato oficial do MP, com todas as formalidades e citando 10 precedentes."</p>
+          </div>
+        </div>
+        <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#fca5a5;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">⚠️ <b>O Problema:</b> O modelo tenta equilibrar estética e síntese ao mesmo tempo, resultando em uma análise rasa e peça mal formatada.</span>
+        </div>
       </div>
-      <div class="phi-box good">
-        <div class="tag">✅ Correção — Dividir em Dois Prompts</div>
-        <p><b>Prompt 1 (Análise):</b> "Analise os aspectos jurídicos relevantes deste processo, identificando questões controvertidas e precedentes aplicáveis."</p>
-        <p style="margin-top:8px"><b>Prompt 2 (Escrita):</b> "Com base na análise anterior, redija manifestação ministerial seguindo padrão formal do MPPA."</p>
+
+      <!-- Card 2: A Solução (Cadeia de Prompts) -->
+      <div class="step-card" style="background:rgba(10,28,22,0.85);border:1.5px solid rgba(74,222,128,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(34,197,94,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #4ade80, #16a34a);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#86efac;background:rgba(34,197,94,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(74,222,128,0.4);">✅ Estratégia em Duas Etapas</span>
+            <div style="width:3em;height:3em;color:#4ade80;background:rgba(34,197,94,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('clipboard')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Encadeamento Lógico</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #4ade80;padding:1.1em;border-radius:0 14px 14px 0;display:flex;flex-direction:column;gap:10px;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.08);line-height:1.4;margin:0;"><b style="color:#4ade80;">1. Prompt de Análise:</b> <i>"Analise as contradições e precedentes relevantes."</i></p>
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.08);line-height:1.4;margin:0;"><b style="color:#4ade80;">2. Prompt de Redação:</b> <i>"Com base na análise anterior, redija a peça oficial do MPPA."</i></p>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Vantagem:</b> Separa o processamento cognitivo bruto da estilização final, alcançando máxima excelência em ambos.</span>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1291,20 +1422,52 @@ slides.push({
   theme: "Erros Comuns · 4/5",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a"></span>Erro 04 de 05</div>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 04 de 05</div>
     <h2 class="h2">Erro 4: Comandos Negativos (Sem Contraponto)</h2>
-    <p class="lede">A IA responde melhor a <b>comandos afirmativos</b>. Dê direção clara em vez de apenas limitações.</p>
-    <div class="phi-compare" style="grid-template-columns:1fr 1fr">
-      <div class="phi-box bad">
-        <div class="tag">❌ O Bloqueio (Apenas Proibições)</div>
-        <p>"Não faça texto longo. Não use palavras difíceis. Não cite doutrina desnecessária."</p>
-        <span style="font-size:0.85em;color:#ef6a6a;display:block;margin-top:6px"><b>O Problema:</b> Gera confusão sobre o que fazer — a IA foca nas palavras "longo", "difíceis", "desnecessária".</span>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA responde melhor a <b style="color:#4ade80;">comandos afirmativos</b>. Dê direção clara do que fazer em vez de acumular proibições.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Card 1: O Bloqueio Negativo -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">❌ Acúmulo de Proibições</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('alert')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Apenas "Não Faça"</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #ef4444;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:500;">"Não faça texto longo. Não use palavras difíceis. Não cite doutrina desnecessária."</p>
+          </div>
+        </div>
+        <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#fca5a5;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">⚠️ <b>O Problema:</b> Causa ruído cognitivo. O modelo foca nas palavras proibidas ("longo", "difíceis", "desnecessária") por associação.</span>
+        </div>
       </div>
-      <div class="phi-box good">
-        <div class="tag">✅ A Vantagem (Comando Afirmativo)</div>
-        <p>"Seja conciso e objetivo. Use linguagem clara e acessível. Cite apenas jurisprudência diretamente aplicável ao caso."</p>
-        <span style="font-size:0.85em;color:#59d698;display:block;margin-top:6px">Mapeia exatamente o caminho esperado.</span>
+
+      <!-- Card 2: A Direção Afirmativa -->
+      <div class="step-card" style="background:rgba(10,28,22,0.85);border:1.5px solid rgba(74,222,128,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(34,197,94,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #4ade80, #16a34a);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#86efac;background:rgba(34,197,94,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(74,222,128,0.4);">✅ Comando Positivo & Afirmativo</span>
+            <div style="width:3em;height:3em;color:#4ade80;background:rgba(34,197,94,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('target')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Instrução Clara do Objetivo</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #4ade80;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.18);font-style:italic;line-height:1.5;margin:0;font-weight:600;">"Seja conciso e objetivo. Use linguagem clara e acessível. Cite apenas jurisprudência diretamente aplicável ao caso."</p>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Vantagem:</b> Mapeia exatamente a rota esperada, orientando os vetores do modelo de linguagem para o resultado correto.</span>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1317,25 +1480,53 @@ slides.push({
   theme: "Erros Comuns · 5/5",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a"></span>Erro 05 de 05</div>
-    <h2 class="h2">Erro 5: O Princípio do Trade-off no Excesso de Instruções</h2>
-    <p class="lede">Quanto mais instruções simultâneas você fornece, menor será a qualidade executada pela IA em cada instrução individual.</p>
-    <div class="phi-wrap">
-      <div>
-        <div class="phi-box bad">
-          <div class="tag">❌ O Mega-Prompt Falho</div>
-          <p>Misturar 50 instruções: análise + formato + estilo + pesquisa + citações + limitações + personalização + tom + exceções num parágrafo gigante.</p>
-          <span style="font-size:0.85em;color:#ef6a6a;display:block;margin-top:6px">O "Mega-Prompt" é uma ilusão — o volume de regras dilui a capacidade de processamento do modelo.</span>
+    <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 05 de 05</div>
+    <h2 class="h2">Erro 5: O Excesso de Instruções (Trade-off)</h2>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Quanto mais instruções simultâneas você fornece, menor será o nível de atenção dispensado a cada uma delas.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Card 1: O Mega-Prompt Falho -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">❌ Ilusão do Mega-Prompt</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('ticket')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">50 Regras Num Único Bloco</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #ef4444;padding:1.2em;border-radius:0 14px 14px 0;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.15);font-style:italic;line-height:1.5;margin:0;font-weight:500;">"Misturar análise + formato + estilo + pesquisa + 15 exceções + restrições num parágrafo gigante de comando."</p>
+          </div>
+        </div>
+        <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(248,113,113,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#fca5a5;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">⚠️ <b>Diluição da Atenção:</b> O excesso de comandos satura o mecanismo de atenção do modelo, que passa a ignorar diretrizes.</span>
         </div>
       </div>
-      <div class="phi-box good">
-        <div class="tag">✅ A Correção Estruturada</div>
-        <ul class="phi-list" style="margin-top:0.4em">
-          <li><span class="num">1</span><div>Limite-se a um máximo de <b>5 a 7 instruções principais</b>, hierarquizadas.</div></li>
-          <li><span class="num">2</span><div>Foco específico garante a máxima qualidade.</div></li>
-          <li><span class="num">3</span><div>Se precisar de mais, fragmente a tarefa em vários prompts consecutivos no chat.</div></li>
-        </ul>
+
+      <!-- Card 2: A Regra do Limite (5 a 7 Regras) -->
+      <div class="step-card" style="background:rgba(10,28,22,0.85);border:1.5px solid rgba(74,222,128,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(34,197,94,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #4ade80, #16a34a);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#86efac;background:rgba(34,197,94,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(74,222,128,0.4);">✅ Foco & Encadeamento</span>
+            <div style="width:3em;height:3em;color:#4ade80;background:rgba(34,197,94,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('list')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.6em 0;">Máximo de 5 a 7 Instruções</h3>
+          <div style="background:rgba(0,0,0,0.35);border-left:4px solid #4ade80;padding:1.1em;border-radius:0 14px 14px 0;display:flex;flex-direction:column;gap:8px;">
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.08);line-height:1.45;margin:0;">• Limite-se a no máximo <b>5 a 7 regras prioritárias</b> por prompt.</p>
+            <p style="color:#ffffff;font-size:calc(var(--fs-small) * 1.08);line-height:1.45;margin:0;">• Se a tarefa exige mais, divida o trabalho em etapas interativas.</p>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Regra de Ouro:</b> A precisão da resposta é inversamente proporcional ao acúmulo desordenado de demandas.</span>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1348,35 +1539,48 @@ slides.push({
   theme: "Gestão do Foco",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker"><span class="dot"></span>Arquitetura Cognitiva</div>
+    <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Arquitetura Cognitiva</div>
     <h2 class="h2">O Padrão Oculto: A Gestão do Foco Cognitivo</h2>
-    <p class="lede"><b>Por que esses 5 erros destroem a precisão da IA?</b> Todos compartilham uma única falha fatal: <b>o desperdício da janela de contexto.</b></p>
-    <div class="agenda-grid" style="grid-template-columns:repeat(2,1fr)">
-      <div class="agenda-card" style="--chue:355">
-        <span class="num">01</span>
-        <div class="tx"><b>Objetivos Genéricos</b><span>Não filtram os dados relevantes do processo.</span></div>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch"><b>Por que os 5 erros destroem a precisão da IA?</b> Todos compartilham uma falha fatal: <b style="color:#f87171;">o desperdício da janela de contexto.</b></p>
+    
+    <!-- Grid com 4 Cartões Cognitivos Animados -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:1em;">
+      
+      <!-- Cartão 1: Objetivos Genéricos -->
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:18px;padding:1.4em;display:flex;align-items:flex-start;gap:16px;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+        <div style="width:2.6em;height:2.6em;flex:none;color:#38bdf8;background:rgba(56,189,248,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;">
+          ${iconSvg('spark')}
+        </div>
+        <div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.3em 0;">1. Objetivos Genéricos</h3>
+          <p style="color:#f1f5f9;font-size:calc(var(--fs-small) * 1.2);line-height:1.45;margin:0;font-weight:500;">Não filtram os dados relevantes do processo, dispersando a atenção do modelo em detalhes irrelevantes.</p>
+        </div>
       </div>
-      <div class="agenda-card" style="--chue:355">
-        <span class="num">02</span>
-        <div class="tx"><b>Excesso de Instruções</b><span>Dilui o poder computacional do modelo.</span></div>
-      </div>
-      <div class="agenda-card" style="--chue:355">
-        <span class="num">03</span>
-        <div class="tx"><b>Misturar Tarefas</b><span>Força a constante troca de contexto interno.</span></div>
-      </div>
-      <div class="agenda-card" style="--chue:355">
-        <span class="num">04</span>
-        <div class="tx"><b>Comandos Negativos</b><span>Forçam o processamento prévio do oposto.</span></div>
-      </div>
-    </div>
-    <div class="example-box" style="margin-top:1.2em;border-style:solid">
-      <div class="et">💡 O Insight Estratégico</div>
-      <p>"A Engenharia de Prompt não é sobre escrever muito. É sobre administrar o <b>foco cognitivo da máquina</b> para economizar o seu próprio tempo."</p>
-    </div>
-  </div>`
-});
 
-// ==================== SLIDE 14: FATOR HUMANO ====================
+      <!-- Cartão 2: Excesso de Instruções -->
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:18px;padding:1.4em;display:flex;align-items:flex-start;gap:16px;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+        <div style="width:2.6em;height:2.6em;flex:none;color:#fbbf24;background:rgba(251,191,36,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;">
+          ${iconSvg('ticket')}
+        </div>
+        <div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.3em 0;">2. Excesso de Instruções</h3>
+          <p style="color:#f1f5f9;font-size:calc(var(--fs-small) * 1.2);line-height:1.45;margin:0;font-weight:500;">Dilui a capacidade computacional e a precisão da IA em cada instrução individual.</p>
+        </div>
+      </div>
+
+      <!-- Cartão 3: Misturar Tarefas -->
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:18px;padding:1.4em;display:flex;align-items:flex-start;gap:16px;box-shadow:0 8px 28px rgba(0,0,0,0.3);position:relative;overflow:hidden;">
+        <div style="width:2.6em;height:2.6em;flex:none;color:#f87171;background:rgba(248,113,113,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;">
+          ${iconSvg('alert')}
+        </div>
+        <div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.3em 0;">3. Misturar Tarefas</h3>
+          <p style="color:#f1f5f9;font-size:calc(var(--fs-small) * 1.2);line-height:1.45;margin:0;font-weight:500;">Força a constante troca de contexto interno, penalizando o raciocínio profundo e a qualidade estilística.</p>
+        </div>
+      </div>
+
+      <!-- Cartão 4: Comandos Negativos -->
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radiu// ==================== SLIDE 14: FATOR HUMANO ====================
 slides.push({
   id: "slide-14",
   type: "agent",
@@ -1384,26 +1588,70 @@ slides.push({
   theme: "Validação & Riscos",
   html: `
   <div class="slide" data-kind="agent">
-    <div class="kicker"><span class="dot"></span>Governança e Responsabilidade</div>
+    <div class="kicker" style="color:#f87171;"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Governança e Responsabilidade</div>
     <h2 class="h2">O Fator Humano: Limitações Técnicas Críticas</h2>
-    <p class="lede">A IA rascunha, o <b>humano valida</b>. Onde focar sua revisão jurídica rígida:</p>
-    <div class="agent-wrap">
-      <div class="side-panel" style="border-left:5px solid #ef6a6a">
-        <h4 style="color:#ef6a6a">1. O Risco da Desatualização</h4>
-        <ul class="func-list">
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>NUNCA</b> confie em datas automáticas e prazos calculados.</div></li>
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>SEMPRE</b> verifique a legislação penal e processual recente.</div></li>
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>BUSQUE</b> ativamente precedentes posteriores ao treinamento do modelo.</div></li>
-        </ul>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA rascunha, o <b style="color:#4ade80;">humano valida</b>. Onde focar sua revisão jurídica rígida:</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
+      
+      <!-- Painel 1: Risco da Desatualização -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">Risco 01</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('alert')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.8em 0;">1. O Risco da Desatualização</h3>
+          
+          <ul class="func-list" style="gap:0.9em;">
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">NUNCA</b> confie em datas automáticas e prazos calculados.</div>
+            </li>
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">SEMPRE</b> verifique a legislação penal e processual recente.</div>
+            </li>
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">BUSQUE</b> ativamente precedentes posteriores ao treinamento do modelo.</div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="side-panel" style="border-left:5px solid #ef6a6a">
-        <h4 style="color:#ef6a6a">2. O Risco da Alucinação</h4>
-        <ul class="func-list">
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>CONFIRME</b> todas as citações de leis e artigos do CP/CPP.</div></li>
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>VALIDE</b> a real existência de precedentes mencionados.</div></li>
-          <li><span class="chk" style="color:#ef6a6a;background:rgba(239,106,106,.15)">!</span><div><b>CHEQUE</b> duplamente cálculos e prazos legais gerados.</div></li>
-        </ul>
+
+      <!-- Painel 2: Risco da Alucinação -->
+      <div class="step-card" style="background:rgba(30,12,18,0.85);border:1.5px solid rgba(248,113,113,0.5);border-radius:20px;padding:1.8em;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 32px rgba(239,68,68,0.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1em;">
+            <span style="font-size:0.85rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,0.18);padding:0.4em 0.9em;border-radius:999px;border:1px solid rgba(248,113,113,0.4);">Risco 02</span>
+            <div style="width:3em;height:3em;color:#f87171;background:rgba(239,68,68,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:6px;">
+              ${iconSvg('shieldsearch')}
+            </div>
+          </div>
+          <h3 style="font-size:calc(var(--fs-h3) * 1.15);color:#ffffff;font-weight:800;margin:0 0 0.8em 0;">2. O Risco da Alucinação</h3>
+          
+          <ul class="func-list" style="gap:0.9em;">
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">CONFIRME</b> todas as citações de leis e artigos do CP/CPP.</div>
+            </li>
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">VALIDE</b> a real existência de precedentes mencionados.</div>
+            </li>
+            <li style="font-size:calc(var(--fs-bullet) * 1.08);color:#fecaca;line-height:1.45;">
+              <span class="chk" style="color:#ef4444;background:rgba(239,68,68,0.2);border:1px solid rgba(248,113,113,0.4);">!</span>
+              <div><b style="color:#ffffff;">CHEQUE</b> duplamente cálculos e prazos legais gerados.</div>
+            </li>
+          </ul>
+        </div>
       </div>
+
     </div>
   </div>`
 });
@@ -1416,18 +1664,98 @@ slides.push({
   theme: "Síntese Estratégica",
   html: `
   <div class="slide" data-kind="philosophy">
-    <div class="kicker"><span class="dot"></span>Checklist Final</div>
+    <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Checklist Final</div>
     <h2 class="h2">A Partitura Perfeita: Síntese Estratégica</h2>
-    <p class="lede">Resumo executivo das diretrizes técnicas de Engenharia de Prompts.</p>
-    <div class="phi-wrap">
-      <div>
-        <ul class="func-list">
-          <li><span class="chk">✓</span><div><b>Fórmula Mestra:</b> Persona → Contexto → Instrução → Formato.</div></li>
-          <li><span class="chk">✓</span><div><b>Refinamento em Etapas:</b> O maestro não ajusta tudo de uma vez.</div></li>
-          <li><span class="chk">✓</span><div><b>Metaprompting:</b> Peça ajuda à própria IA para construir o prompt.</div></li>
-          <li><span class="chk">✓</span><div><b>Desacoplamento:</b> Divida a análise profunda da redação final.</div></li>
-          <li><span class="chk">✓</span><div><b>Linguagem Afirmativa:</b> Use comandos diretos e afirmativos.</div></li>
-          <li><span class="chk">✓</span><div><b>Curadoria Humana:</b> Valide rigidamente leis, prazos e precedentes.</div></li>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Resumo executivo das diretrizes técnicas de Engenharia de Prompts.</p>
+    
+    <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:28px;align-items:center;margin-top:1em;">
+      
+      <!-- Coluna 1: Cartão da Fórmula Mestra e Diretrizes -->
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:20px;padding:1.6em;box-shadow:0 10px 32px rgba(0,0,0,0.3);">
+        <ul class="func-list" style="gap:1em;">
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Fórmula Mestra:</b> Persona → Contexto → Instrução → Formato.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Refinamento em Etapas:</b> O maestro não ajusta tudo de uma vez.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Metaprompting:</b> Peça ajuda à própria IA para construir o prompt.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Desacoplamento:</b> Divida a análise profunda da redação final.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Linguagem Afirmativa:</b> Use comandos diretos e afirmativos.</div>
+          </li>
+          <li style="font-size:calc(var(--fs-bullet) * 1.1);color:#f1f5f9;line-height:1.45;">
+            <span class="chk" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);">✓</span>
+            <div><b style="color:#ffffff;">Curadoria Humana:</b> Valide rigidamente leis, prazos e precedentes.</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: Cartão do Portal de Inovação MPPA -->
+      <div class="step-card" style="background:linear-gradient(145deg, rgba(15,32,64,0.9) 0%, rgba(56,189,248,0.2) 100%);border:1.5px solid rgba(56,189,248,0.5);border-radius:20px;padding:2em 1.4em;text-align:center;box-shadow:0 10px 32px rgba(0,0,0,0.3);">
+        <div style="width:3.2em;height:3.2em;color:#38bdf8;background:rgba(56,189,248,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1em auto;">
+          ${iconSvg('spark')}
+        </div>
+        <h4 style="color:#ffffff;font-size:calc(var(--fs-h3) * 1.1);font-weight:800;margin:0 0 0.5em 0;">Portal de Inovação do MPPA</h4>
+        <p style="color:#e2e8f0;font-size:calc(var(--fs-small) * 1.1);margin:0 0 1.5em 0;line-height:1.4;">Acesse repositórios e materiais institucionais:</p>
+        <a href="https://ciia.mppa.mp.br" target="_blank" class="pill" style="font-size:1.15rem;padding:0.7em 1.6em;text-decoration:none;display:inline-block;background:var(--orange-ink,#e8720c);color:#ffffff;font-weight:800;border-radius:999px;box-shadow:0 4px 16px rgba(232,114,12,0.4);">ciia.mppa.mp.br</a>
+      </div>
+
+    </div>
+  </div>`
+});
+
+// ==================== SLIDE 16: OBSERVAÇÃO & ADAPTAÇÃO ====================
+slides.push({
+  id: "slide-16",
+  type: "closing",
+  hue: 215,
+  theme: "A Regência Final",
+  html: `
+  <div class="slide closing" data-kind="closing">
+    <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Maturidade Prática</div>
+    <h1 class="h1" style="font-size:calc(var(--fs-h1) * 1.05);">Observação e <span class="accent" style="color:#38bdf8;">Adaptação</span></h1>
+    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:70ch">Utilize a IA a seu favor. O verdadeiro domínio não vem de decorar prompts, mas de <b style="color:#ffffff;">analisar o comportamento do modelo</b>.</p>
+    
+    <!-- 3 Estatísticas/Passos Animados em Cartões -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:1.4em;width:100%;max-width:1300px;">
+      
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:20px;padding:1.6em;text-align:left;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <span style="font-size:2.2rem;font-weight:900;color:#38bdf8;display:block;margin-bottom:8px;">01</span>
+        <b style="color:#ffffff;font-size:calc(var(--fs-h3) * 1.05);display:block;margin-bottom:6px;">Observação Contínua</b>
+        <span style="color:#cbd5e1;font-size:calc(var(--fs-small) * 1.1);line-height:1.45;display:block;">Observe padrões de resposta em diferentes cenários jurídicos.</span>
+      </div>
+
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:20px;padding:1.6em;text-align:left;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <span style="font-size:2.2rem;font-weight:900;color:#38bdf8;display:block;margin-bottom:8px;">02</span>
+        <b style="color:#ffffff;font-size:calc(var(--fs-h3) * 1.05);display:block;margin-bottom:6px;">Ajuste Fino</b>
+        <span style="color:#cbd5e1;font-size:calc(var(--fs-small) * 1.1);line-height:1.45;display:block;">Ajuste suas instruções em tempo real conforme o retorno.</span>
+      </div>
+
+      <div class="step-card" style="background:rgba(15,32,64,0.85);border:1.5px solid rgba(56,189,248,0.4);border-radius:20px;padding:1.6em;text-align:left;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <span style="font-size:2.2rem;font-weight:900;color:#38bdf8;display:block;margin-bottom:8px;">03</span>
+        <b style="color:#ffffff;font-size:calc(var(--fs-h3) * 1.05);display:block;margin-bottom:6px;">Aplicação Prática</b>
+        <span style="color:#cbd5e1;font-size:calc(var(--fs-small) * 1.1);line-height:1.45;display:block;">Implemente com validação em casos reais da sua promotoria.</span>
+      </div>
+
+    </div>
+
+    <!-- Frase de Encerramento Destacada -->
+    <div style="margin-top:1.8em;padding:1.2em 2.5em;background:linear-gradient(135deg, rgba(232,114,12,0.2) 0%, rgba(15,32,64,0.9) 100%);border:1.5px solid rgba(251,146,60,0.6);border-radius:999px;box-shadow:0 8px 32px rgba(232,114,12,0.2);">
+      <span style="font-size:calc(var(--fs-h2) * 1.1);font-weight:900;color:var(--orange-ink,#ffb066);font-style:italic;">"O maestro da orquestra é sempre você."</span>
+    </div>
+
+  </div>`
+});na:</b> Valide rigidamente leis, prazos e precedentes.</div></li>
         </ul>
       </div>
       <div class="side-panel" style="text-align:center">
