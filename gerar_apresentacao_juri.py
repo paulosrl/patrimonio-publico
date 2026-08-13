@@ -32,8 +32,42 @@ def main():
     with open(TEMPLATE_FILE, 'r', encoding='utf-8') as f:
         template = f.read()
 
-    # Injetar CSS de responsividade móvel antes de </style>
-    mobile_css = """
+    # Injetar CSS de animação para os textos destacados de Slide 2 e responsividade móvel antes de </style>
+    extra_css = """
+/* ---------- ANIMAÇÃO DO TEXTO EM LARANJA NO SLIDE 2 ---------- */
+.agenda-card .tx span.orange-highlight {
+  display: block !important;
+  color: var(--orange-ink) !important;
+  font-weight: 600 !important;
+  font-size: var(--fs-small) !important;
+  margin-top: 0.35em !important;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: pulseHighlight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide.active .agenda-card:nth-child(1) .tx span.orange-highlight { animation-delay: 0.2s; }
+.slide.active .agenda-card:nth-child(2) .tx span.orange-highlight { animation-delay: 0.35s; }
+.slide.active .agenda-card:nth-child(3) .tx span.orange-highlight { animation-delay: 0.5s; }
+.slide.active .agenda-card:nth-child(4) .tx span.orange-highlight { animation-delay: 0.65s; }
+
+@keyframes pulseHighlight {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: drop-shadow(0 0 0px var(--orange));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px var(--orange));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: drop-shadow(0 0 4px rgba(232, 114, 12, 0.4));
+  }
+}
+
 /* ---------- RESPONSIVIDADE E LAYOUT FLUIDO PARA DISPOSITIVOS MÓVEIS ---------- */
 @media (max-width: 820px) {
   .stage { overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
@@ -67,10 +101,10 @@ def main():
 }
 """
 
-    # Injetar o CSS mobile
+    # Injetar o CSS
     style_end_pos = template.find('</style>')
     if style_end_pos != -1:
-        template = template[:style_end_pos] + mobile_css + template[style_end_pos:]
+        template = template[:style_end_pos] + extra_css + template[style_end_pos:]
 
     # 1. Extrair HTML do slide de capa do template original
     cover_push_start = template.find('slides.push({type:"cover"')
@@ -113,7 +147,7 @@ def main():
         '<div class="slide cover" data-kind="cover" style="align-items:center;text-align:center">'
     )
 
-    # 2. Definir o array JS de 17 slides com base no Markdown
+    # 2. Definir o array JS de 17 slides com base no Markdown (com spans animados em laranja no Slide 2)
     slides_js = f"""const slides = [];
 
 // ==================== SLIDE 1: CAPA ====================
@@ -138,19 +172,19 @@ slides.push({{
     <div class="agenda-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;margin-top:1.2em">
       <div class="agenda-card" style="--chue:28" onclick="goTo(2)">
         <span class="num">01</span>
-        <span class="tx"><b>Fundamentos & Conceito</b><span>Conceito de Prompt, Analogia do Maestro e os 4 Pilares da Estrutura.</span></span>
+        <span class="tx"><b>Fundamentos & Conceito</b><span class="orange-highlight">Conceito de Prompt, Analogia do Maestro e os 4 Pilares da Estrutura.</span></span>
       </div>
       <div class="agenda-card" style="--chue:196" onclick="goTo(4)">
         <span class="num">02</span>
-        <span class="tx"><b>Técnicas Avançadas & Maturidade</b><span>Metaprompting (IA refinando IA) e a Jornada do Usuário (Iniciante a Avançado).</span></span>
+        <span class="tx"><b>Técnicas Avançadas & Maturidade</b><span class="orange-highlight">Metaprompting (IA refinando IA) e a Jornada do Usuário (Iniciante a Avançado).</span></span>
       </div>
       <div class="agenda-card" style="--chue:355" onclick="goTo(6)">
         <span class="num">03</span>
-        <span class="tx"><b>Antipadrões & 5 Erros Críticos</b><span>Como NÃO usar a IA e a desconstrução detalhada dos 5 erros mais comuns.</span></span>
+        <span class="tx"><b>Antipadrões & 5 Erros Críticos</b><span class="orange-highlight">Como NÃO usar a IA e a desconstrução detalhada dos 5 erros mais comuns.</span></span>
       </div>
       <div class="agenda-card" style="--chue:158" onclick="goTo(12)">
         <span class="num">04</span>
-        <span class="tx"><b>Foco Cognitivo, Riscos & Síntese</b><span>Gestão do foco, riscos técnicos (desatualização/alucinação) e checklist final.</span></span>
+        <span class="tx"><b>Foco Cognitivo, Riscos & Síntese</b><span class="orange-highlight">Gestão do foco, riscos técnicos (desatualização/alucinação) e checklist final.</span></span>
       </div>
     </div>
   </div>`
@@ -322,7 +356,7 @@ slides.push({{
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#ef6a6a"><span class="dot" style="background:#ef6a6a;box-shadow:0 0 14px #ef6a6a"></span>Antipadrões de Uso</div>
     <h2 class="h2">Como NÃO Usar a IA</h2>
-    <p class="lede">Três posturas inadequadas que comprometem a eficácia e a segurança da atuação jurídica.</p>
+    <p class="lede">Três posturas inadequada que comprometem a eficácia e a segurança da atuação jurídica.</p>
     <div class="phi-compare" style="grid-template-columns:repeat(3,1fr);display:grid;gap:16px">
       <div class="phi-box bad">
         <div class="tag">1. Sem Hipótese</div>
@@ -695,7 +729,7 @@ slides.push({{
         f.write(full_html)
 
     print("==========================================================")
-    print("✅ Apresentação gerada com sucesso sem sujeira no Slide 2!")
+    print("✅ Apresentação gerada com animação nos textos de Slide 2!")
     print(f"📄 Arquivo: {OUTPUT_FILE}")
     print(f"📦 Tamanho total: {len(full_html)} bytes")
     print("==========================================================")
