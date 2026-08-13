@@ -31,13 +31,13 @@
 Para que a IA compreenda exatamente o que você precisa, o comando deve conter 4 elementos estruturais:
 
 - **Persona** — Quem a IA deve simular.
-  *Ex.: "Atue como Promotor de Justiça com experiência no Tribunal do Júri."*
+Ex.: "Atue como Promotor de Justiça com experiência na Defesa do Patrimônio Público e da Moralidade Administrativa."
 - **Contexto** — Fatos essenciais.
-  *Ex.: "Analise os depoimentos em anexo do Inquérito Policial."*
+Ex.: "Analise os documentos em anexo do Inquérito Civil que apura suposto superfaturamento em contrato administrativo."
 - **Instrução** — O que deve ser feito.
-  *Ex.: "Identifique as contradições entre as testemunhas e destaque pontos da acusação."*
+Ex.: "Identifique indícios de dano ao erário e possíveis violações aos princípios da Administração Pública."
 - **Formato** — Como entregar a resposta.
-  *Ex.: "Apresente o resultado em uma lista com marcadores."*
+Ex.: "Apresente o resultado em uma lista com marcadores."
 
 ---
 
