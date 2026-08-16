@@ -1174,7 +1174,7 @@
       }
 
       .foot-left .ft-title,
-      .foot-center {
+      .theme-chip {
         display: none;
       }
     }
@@ -1329,8 +1329,24 @@
       }
 
       .foot-left .ft-title,
-      .foot-center {
+      .theme-chip {
         display: none !important;
+      }
+
+      .foot-center {
+        display: flex !important;
+        flex: none !important;
+      }
+
+      .foot-count {
+        color: var(--ink) !important;
+        font-size: var(--fs-tiny) !important;
+        font-weight: 700 !important;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.3em 0.7em;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        white-space: nowrap;
       }
 
       .footerbar {
@@ -3120,6 +3136,42 @@
     /* init */
     buildMenu();
     goTo(0);
+  
+  // Touch swipe support for mobile devices
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+      if (diffX < 0) {
+        // Swipe left -> Next
+        if (typeof nextSlide === 'function') nextSlide();
+        else if (typeof next === 'function') next();
+        else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current + 1);
+      } else {
+        // Swipe right -> Prev
+        if (typeof prevSlide === 'function') prevSlide();
+        else if (typeof prev === 'function') prev();
+        else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current - 1);
+      }
+    }
+  }
+
   </script>
 </body>
 
