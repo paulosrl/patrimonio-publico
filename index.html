@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA na Tutela do Patrimônio Público · MPPA</title>
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --bg2:#eaeef8;
+    --panel:#ffffff;
+    --panel-line:#dbe2f0;
+    --ink:#101a30;
+    --ink-dim:#4b5875;
+    --ink-dimmer:#7686a8;
+    --orange:#c85e05;
+    --orange-soft:#c85e0514;
+    --orange-line:#c85e0545;
+    --red:#a3212f;
+    --red-soft:#a3212f14;
+    --red-line:#a3212f45;
+    --serif:"Iowan Old Style","Palatino Linotype","URW Palladio","P052",Georgia,"Times New Roman",serif;
+    --sans:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    --fs-h1: clamp(2.3rem, 2.2vw + 1.6rem, 3.6rem);
+    --fs-h2: clamp(1.5rem, 1vw + 1.1rem, 2rem);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#070f1f;
+      --bg2:#0a1730;
+      --panel:#0f2040;
+      --panel-line:rgba(255,255,255,.10);
+      --ink:#f2f5fb;
+      --ink-dim:#a9b7d6;
+      --ink-dimmer:#7688ab;
+      --orange:#e8720c;
+      --orange-soft:#e8720c1c;
+      --orange-line:#e8720c55;
+      --red:#e2495a;
+      --red-soft:#e2495a1c;
+      --red-line:#e2495a55;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#070f1f;
+    --bg2:#0a1730;
+    --panel:#0f2040;
+    --panel-line:rgba(255,255,255,.10);
+    --ink:#f2f5fb;
+    --ink-dim:#a9b7d6;
+    --ink-dimmer:#7688ab;
+    --orange:#e8720c;
+    --orange-soft:#e8720c1c;
+    --orange-line:#e8720c55;
+    --red:#e2495a;
+    --red-soft:#e2495a1c;
+    --red-line:#e2495a55;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(60vw 40vw at 85% -10%, var(--orange-soft), transparent 60%),
+      radial-gradient(50vw 30vw at 0% 0%, var(--red-soft), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+
+  /* masthead */
+  .masthead{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:28px 0 0;
+  }
+  .brand{
+    display:flex;align-items:center;gap:.6em;
+    font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .brand .dot{width:.5em;height:.5em;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);}
+  .masthead .tag{
+    font-size:.78rem;color:var(--ink-dimmer);letter-spacing:.04em;
+  }
+
+  /* hero */
+  .hero{padding:clamp(48px,8vw,88px) 0 clamp(32px,5vw,56px);}
+  .hero .eyebrow{
+    font-family:var(--sans);font-weight:700;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--orange);margin:0 0 1.1em;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:var(--fs-h1);line-height:1.08;margin:0 0 .5em;text-wrap:balance;
+    letter-spacing:-.01em;
+  }
+  .hero p.lede{
+    max-width:62ch;color:var(--ink-dim);font-size:1.14rem;line-height:1.65;margin:0;
+  }
+  .hero .stats{
+    display:flex;gap:clamp(24px,5vw,56px);margin-top:2.2em;flex-wrap:wrap;
+  }
+  .hero .stat b{
+    display:block;font-family:var(--serif);font-size:1.7rem;font-variant-numeric:tabular-nums;
+  }
+  .hero .stat span{font-size:.78rem;color:var(--ink-dimmer);letter-spacing:.04em;}
+
+  /* cards */
+  .decks{
+    display:grid;grid-template-columns:1fr 1fr;gap:22px;
+    padding:0 0 clamp(40px,6vw,64px);
+  }
+  @media (max-width:780px){.decks{grid-template-columns:1fr;}}
+
+  .deck-card{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:18px;
+    padding:clamp(26px,3vw,34px);
+    display:flex;flex-direction:column;gap:1.1em;
+    text-decoration:none;color:var(--ink);
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .deck-card:hover, .deck-card:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 18px 40px -22px rgba(0,0,0,.35);
+    outline:none;
+  }
+  .deck-card:focus-visible{outline:2px solid var(--accent-c);outline-offset:3px;}
+  .deck-card.a{--accent-c:var(--orange);border-top:3px solid var(--orange);}
+  .deck-card.b{--accent-c:var(--red);border-top:3px solid var(--red);}
+
+  .deck-num{
+    font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--accent-c);
+    font-variant-numeric:tabular-nums;opacity:.9;
+  }
+  .deck-card h2{
+    font-family:var(--serif);font-size:var(--fs-h2);font-weight:500;margin:0;line-height:1.22;text-wrap:balance;
+  }
+  .deck-card .thesis{
+    font-size:.98rem;color:var(--ink-dim);font-style:italic;margin:0;line-height:1.55;
+    border-left:2px solid var(--accent-c);padding-left:.85em;
+  }
+  .deck-card .topics{
+    display:flex;flex-wrap:wrap;gap:.5em;margin:.2em 0 0;padding:0;list-style:none;
+  }
+  .deck-card .topics li{
+    font-size:.76rem;letter-spacing:.02em;color:var(--ink-dim);
+    background:color-mix(in srgb, var(--accent-c) 10%, transparent);
+    border:1px solid color-mix(in srgb, var(--accent-c) 30%, transparent);
+    border-radius:999px;padding:.35em .8em;
+  }
+  .deck-card .meta{
+    margin-top:auto;padding-top:1em;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:.82rem;color:var(--ink-dimmer);
+    border-top:1px solid var(--panel-line);
+  }
+  .deck-card .cta{
+    font-weight:700;color:var(--accent-c);display:inline-flex;align-items:center;gap:.4em;
+  }
+  .deck-card .cta .arrow{transition:transform .18s ease;}
+  .deck-card:hover .cta .arrow{transform:translateX(4px);}
+
+  /* bridge note */
+  .bridge{
+    padding:clamp(28px,4vw,40px) 0 clamp(56px,8vw,88px);
+    border-top:1px solid var(--panel-line);
+  }
+  .bridge h3{
+    font-family:var(--serif);font-weight:500;font-size:1.25rem;margin:0 0 .5em;
+  }
+  .bridge p{
+    max-width:70ch;color:var(--ink-dim);font-size:.98rem;line-height:1.7;margin:0;
+  }
+
+  footer{
+    padding:24px 0 40px;border-top:1px solid var(--panel-line);
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;
+    font-size:.78rem;color:var(--ink-dimmer);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .deck-card{transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="brand"><span class="dot"></span>Ministério Público do Estado do Pará</div>
+    <div class="tag">Tutela do Patrimônio Público · Paulo Lima</div>
+  </div>
+
+  <section class="hero">
+    <p class="eyebrow">Ciclo de duas apresentações</p>
+    <h1>Inteligência artificial, com método, para quem tutela o patrimônio público</h1>
+    <p class="lede">
+      Duas apresentações complementares: a primeira estabelece os fundamentos —
+      como a IA lê contexto, onde erra e como blindar o uso institucional; a
+      segunda leva isso à prática, com engenharia de prompts aplicada a
+      licitações, improbidade administrativa e rotina de gabinete.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>2</b><span>apresentações</span></div>
+      <div class="stat"><b>39</b><span>slides ao todo</span></div>
+      <div class="stat"><b>100%</b><span>offline, autocontidas</span></div>
+    </div>
+  </section>
+
+  <section class="decks">
+
+    <a class="deck-card a" href="01-Inteligencia-Artificial-e-Engenharia-de-Contexto-na-Tutela-do-Patrimonio-Publico-Paulo-Lima.html">
+      <div class="deck-num">01</div>
+      <h2>Inteligência Artificial e Engenharia de Contexto na Tutela do Patrimônio Público</h2>
+      <p class="thesis">"É como se você tivesse uma Ferrari à disposição e não soubesse pilotá-la."</p>
+      <ul class="topics">
+        <li>O que é contexto</li>
+        <li>Os 5 pilares da engenharia de contexto</li>
+        <li>Alucinações e o protocolo dos 3 V's</li>
+        <li>LGPD e dados sigilosos</li>
+        <li>Boas práticas institucionais</li>
+      </ul>
+      <div class="meta">
+        <span>22 slides</span>
+        <span class="cta">Abrir apresentação <span class="arrow">→</span></span>
+      </div>
+    </a>
+
+    <a class="deck-card b" href="02-Introducao-Engenharia-Prompts-apliacada-a-Tutela-do-Patrimonio-Publico-Paulo-Lima.html">
+      <div class="deck-num">02</div>
+      <h2>Engenharia de Prompts aplicada à Tutela do Patrimônio Público</h2>
+      <p class="thesis">Do fundamento ao gabinete: sumário executivo navegável, um bloco por assunto.</p>
+      <ul class="topics">
+        <li>Arquitetura de comando</li>
+        <li>Antipadrões de uso</li>
+        <li>Licitações e red flags</li>
+        <li>Servidor fantasma e rachadinha</li>
+        <li>ANPC e acórdãos do TCM/PA</li>
+      </ul>
+      <div class="meta">
+        <span>17 slides</span>
+        <span class="cta">Abrir apresentação <span class="arrow">→</span></span>
+      </div>
+    </a>
+
+  </section>
+
+  <section class="bridge">
+    <h3>Como as duas se conectam</h3>
+    <p>
+      A apresentação 01 dá o vocabulário e os limites — o que é uma janela de contexto,
+      por que a IA alucina, o que a LGPD proíbe. A apresentação 02 parte desse chão para
+      o dia a dia do gabinete: prompts estruturados para os casos mais recorrentes na
+      tutela do patrimônio público, do saneamento da petição inicial ao acompanhamento
+      pós-ANPC.
+    </p>
+  </section>
+
+  <footer>
+    <span>Paulo Lima · Ministério Público do Pará</span>
+    <span>Apresentações HTML autocontidas — abrem offline, sem dependências</span>
+  </footer>
+
+</div>
+</body>
+</html>
