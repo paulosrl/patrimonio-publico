@@ -7,37 +7,51 @@
   <title>Engenharia de Prompts aplicada ao Tribunal do Júri · MPPA</title>
   <style>
     :root {
+      /* -- surfaces -- */
       --bg: #070f1f;
       --bg2: #0a1730;
       --panel: #0f2040;
       --panel2: #0c1a36;
+      --panel-rgb: 15, 32, 64;
+      --panel-rgb-2: 8, 20, 44;
       --line: rgba(255, 255, 255, .10);
+
+      /* -- text -- */
       --ink: #f2f5fb;
       --ink-dim: #edf8ff;
       --ink-dimmer: #d6eaff;
+      --ink-onfixed: #f2f5fb;
+      --ink-dim-onfixed: #edf8ff;
+      --ink-dimmer-onfixed: #d6eaff;
+      --adaptive-copy: #edf8ff;
+      --adaptive-copy-strong: #f8fcff;
+      --adaptive-copy-muted: #d6eaff;
+
+      /* -- brand / accent -- */
+      --hue: 28;
       --orange: #e8720c;
       --orange-ink: #ffb066;
+      --accent: hsl(var(--hue) 78% 60%);
+      --accent-soft: hsl(var(--hue) 78% 60% / .16);
+      --accent-line: hsl(var(--hue) 78% 60% / .45);
       --adaptive-blue: #e6f8ff;
       --adaptive-blue-strong: #f7fcff;
       --adaptive-blue-muted: #d9f2ff;
       --adaptive-blue-deep: #bfeaff;
       --adaptive-blue-rgb: 230, 248, 255;
-      --ink-onfixed: #f2f5fb;
-      --adaptive-copy: #edf8ff;
-      --adaptive-copy-strong: #f8fcff;
-      --adaptive-copy-muted: #d6eaff;
-      --ink-dim-onfixed: #edf8ff;
-      --ink-dimmer-onfixed: #d6eaff;
-      --panel-rgb: 15, 32, 64;
-      --panel-rgb-2: 8, 20, 44;
-      --c-86efac: #86efac;
-      --pt-k: 30,12,18;
-      --pt-l: 10,28,22;
-      --pt-m: 20,15,30;
-      --hue: 28;
-      --accent: hsl(var(--hue) 78% 60%);
-      --accent-soft: hsl(var(--hue) 78% 60% / .16);
-      --accent-line: hsl(var(--hue) 78% 60% / .45);
+
+      /* -- shared tones (reused across per-instance overrides below) -- */
+      --tone-mint: #86efac;
+
+      /* -- text-tone overrides: dark keeps brand hue, light flattens to --ink -- */
+      --c-86efac: var(--tone-mint);
+
+      /* -- card gradient 2nd-stops (one per step-card tint variant) -- */
+      --pt-k: 30, 12, 18;
+      --pt-l: 10, 28, 22;
+      --pt-m: 20, 15, 30;
+
+      /* -- type scale -- */
       --fs-kicker: clamp(1rem, .35vw + .85rem, 1.3rem);
       --fs-h1: clamp(2.4rem, 3.2vw + 1.5rem, 4.6rem);
       --fs-h2: clamp(2.1rem, 2.3vw + 1.3rem, 3.5rem);
@@ -50,14 +64,25 @@
     }
 
     :root[data-theme="light"] {
+      /* -- surfaces -- */
       --bg: #f4f6fb;
       --bg2: #eaeef8;
       --panel: #d6eafa;
       --panel2: #eaeef8;
+      --panel-rgb: 214, 234, 250;
+      --panel-rgb-2: 195, 220, 245;
+      --panel-rgb-tint: 205, 225, 248;
       --line: rgba(16, 26, 48, 0.1);
+
+      /* -- text -- */
       --ink: #101a30;
       --ink-dim: #101827;
       --ink-dimmer: #1f2937;
+      --adaptive-copy: #101827;
+      --adaptive-copy-strong: #050914;
+      --adaptive-copy-muted: #1f2937;
+
+      /* -- brand / accent -- */
       --orange: #c85e05;
       --orange-ink: #c85e05;
       --adaptive-blue: #071527;
@@ -65,15 +90,14 @@
       --adaptive-blue-muted: #13233b;
       --adaptive-blue-deep: #000814;
       --adaptive-blue-rgb: 7, 21, 39;
-      --adaptive-copy: #101827;
-      --adaptive-copy-strong: #050914;
-      --adaptive-copy-muted: #1f2937;
-      --panel-rgb: 214, 234, 250;
-      --panel-rgb-2: 195, 220, 245;
-      --c-86efac: #101a30;
-      --pt-k: 205, 225, 248;
-      --pt-l: 205, 225, 248;
-      --pt-m: 205, 225, 248;
+
+      /* -- text-tone overrides: all flatten to --ink on light bg -- */
+      --c-86efac: var(--ink);
+
+      /* -- card gradient 2nd-stops: unify to one pale-blue tint on light bg -- */
+      --pt-k: var(--panel-rgb-tint);
+      --pt-l: var(--panel-rgb-tint);
+      --pt-m: var(--panel-rgb-tint);
     }
 
     * {
@@ -1592,388 +1616,6 @@
     function openCopilot() {
       window.open('https://copilot.microsoft.com/', '_blank', 'noopener');
     }
-
-    /* ============================= DATA ============================= */
-    const THEMES = [
-      {
-        id: "red-flags", hue: 355, icon: "flag", name: "Red Flags",
-        subtitle: `Bandeiras vermelhas em licitações e contratos administrativos`,
-        intro: `Identifica indícios de fraude ao longo do certame, aciona a via administrativa para corrigir o problema e, se necessário, minuta a ação judicial para anular o ato e responsabilizar os envolvidos.`,
-        scenario: `Pregão eletrônico do Município de Serra Azul <i>(fictício)</i> para reforma de uma escola: apenas 1 licitante habilitado, valor 42% acima da média de mercado e prazo de publicação do edital reduzido ao mínimo legal.`,
-        agents: [
-          {
-            code: "Pat. Red Flags 01-Análise", role: "Identificação",
-            title: "Análise Técnico-Jurídica de Licitações",
-            desc: `Gera análise técnico-jurídica de red flags em licitações, subsidiando a decisão ministerial sobre arquivamento, diligências, instauração de investigação, denúncia ou AIA.`,
-            func: [
-              `Identificação, classificação e valoração de indícios de fraude por fase do certame`,
-              `Enquadramento em tipologias: conluio, direcionamento, sobrepreço, superfaturamento, empresa de fachada e fracionamento ilegal`,
-              `Síntese do certame, mapa de red flags e fundamentos legais/jurisprudenciais`,
-              `Avaliação de suficiência probatória e recomendação ministerial`,
-              `Indicação de diligências complementares e encaminhamentos decisórios`,
-              `Tomada de decisão pelo usuário, sempre!`
-            ],
-            example: `Identifica 3 red flags — licitante único, sobrepreço e prazo exíguo — classifica o indício de sobrepreço como "forte" e recomenda diligência orçamentária complementar antes de qualquer decisão.`
-          },
-          {
-            code: "Pat. Red Flags 02-Recomendação", role: "Recomendação",
-            title: "Recomendação Ministerial — Red Flags em Licitações",
-            desc: `Template de Recomendação Ministerial para atuação preventiva e corretiva do MP em casos de indícios de irregularidades em licitações e contratos administrativos, conforme a Resolução CNMP nº 164/2017.`,
-            func: [
-              `Exposição dos fundamentos constitucionais e legais da atuação ministerial`,
-              `Descrição do procedimento instaurado e identificação detalhada das red flags verificadas no certame`,
-              `Análise dos possíveis reflexos jurídicos e indicação das providências para regularização`,
-              `Fixação de prazo para cumprimento e solicitação de comprovação das medidas adotadas`,
-              `Advertência quanto às consequências do descumprimento e determinação de ampla publicidade do ato`
-            ],
-            example: `Minuta recomendação ao Prefeito de Serra Azul para republicar o edital com prazo regular e nova pesquisa de preços, fixando 15 dias para resposta.`
-          },
-          {
-            code: "Pat. Red Flags 03-ACP", role: "Ação Judicial",
-            title: "ACP por Improbidade — Fraudes em Licitações",
-            desc: `Template de petição inicial de ACP por Ato de Improbidade Administrativa com tutela de urgência, voltado a licitações e contratos com indícios de fraude, aplicando a Lei nº 14.133/2021, a Lei nº 14.230/2021 e a jurisprudência do TCU, STJ e STF.`,
-            func: [
-              `Narrativa cronológica dos fatos com análise das red flags como elementos indiciários de improbidade`,
-              `Demonstração do dolo específico dos envolvidos e individualização das condutas`,
-              `Fundamentação das medidas cautelares e pedido de tutela de urgência`,
-              `Formulação de pedidos compatíveis com as provas e irregularidades apuradas`,
-              `Aplicação integrada da Lei nº 14.133/2021, Lei nº 14.230/2021 e jurisprudência do TCU, STJ e STF`
-            ],
-            example: `Diante do silêncio do gestor após a recomendação, minuta a ACP com pedido de tutela de urgência para suspender a execução do contrato e responsabilizar os envolvidos.`
-          }
-        ]
-      },
-      {
-        id: "servidores-fantasmas", hue: 262, icon: "ghost", name: "Servidores Fantasmas",
-        subtitle: `Investigação e responsabilização de servidor fantasma`,
-        intro: `Orienta a triagem inicial de casos de servidor fantasma, organiza as provas por trilha investigativa e minuta a ação de improbidade para ressarcimento do erário.`,
-        scenario: `Denúncia anônima aponta que um cargo comissionado na Secretaria de Obras de Serra Azul <i>(fictícia)</i> está lotado, mas o servidor nunca foi visto no local de trabalho nos últimos 8 meses.`,
-        agents: [
-          {
-            code: "Pat. Serv. Fantasma 01-Análise", role: "Investigação",
-            title: "Investigação de Servidor Fantasma e Improbidade",
-            desc: `Assistente investigativo para casos de servidor fantasma e improbidade administrativa, orientando a triagem inicial e a organização de provas por trilha investigativa.`,
-            func: [
-              `Triagem inicial e identificação da modalidade da conduta`,
-              `Trilha Investigativa SAI/CNMP em 7 fases com organização de provas e lacunas`,
-              `Avaliação de dolo específico, dano ao erário, prescrição e enquadramento na LIA`,
-              `Análise de possível peculato e indicação de investigados`,
-              `Recomendação de medidas cautelares e viabilidade da Ação Civil de Improbidade`
-            ],
-            example: `Aplica a Trilha SAI/CNMP em 7 fases, organiza as provas ainda ausentes (ponto eletrônico, testemunhas, produtividade) e aponta indício de dolo específico e peculato por apropriação de salários.`
-          },
-          {
-            code: "Pat. Serv. Fantasma 02-ACP", role: "Ação Judicial",
-            title: "Template de Ação Civil de Improbidade — Servidor Fantasma",
-            desc: `Template de Ação Civil de Improbidade Administrativa para casos de servidor fantasma, com foco em ressarcimento ao erário e vinculação às provas do procedimento.`,
-            func: [
-              `Estrutura completa da petição inicial com qualificação das partes e objeto`,
-              `Narrativa dos fatos, enquadramento jurídico e demonstração do dolo`,
-              `Pedidos cautelares de afastamento e indisponibilidade de bens`,
-              `Quantificação do dano e checagem de dados antes do protocolo`,
-              `Requerimentos finais alinhados à LIA e à jurisprudência atual`
-            ],
-            example: `Minuta a ACP de improbidade com pedido de indisponibilidade de bens, vinculando cada valor pago ao período de ausência comprovado no procedimento.`
-          }
-        ]
-      },
-      {
-        id: "rachadinha", hue: 38, icon: "crack", name: "Rachadinha",
-        subtitle: `Esquemas de devolução de salários e interposta pessoa`,
-        intro: `Investiga esquemas de rachadinha com rastreamento financeiro e prova digital, e minuta a ação de improbidade com bloqueio patrimonial dos envolvidos.`,
-        scenario: `Extratos bancários juntados ao procedimento mostram que três assessores parlamentares devolvem, todo mês, valores muito próximos entre si ao mesmo número de conta.`,
-        agents: [
-          {
-            code: "Pat. Rachadinha 01-Análise", role: "Investigação",
-            title: "Investigação de Esquemas de Rachadinha",
-            desc: `Assistente investigativo especializado em esquemas de Rachadinha e improbidade administrativa, estruturado na metodologia SAI/CNMP e na Lei nº 8.429/1992 (Lei nº 14.230/2021).`,
-            func: [
-              `Extração e identificação da modalidade da fraude: servidor fantasma, devolução de salários ou interposta pessoa`,
-              `Diligências em fases investigativas com rastreamento financeiro e prova digital`,
-              `Avaliação de exercício efetivo do cargo, dolo específico e prescrição`,
-              `Enquadramentos nas esferas cível e penal com análise de viabilidade`,
-              `Cronograma investigativo priorizado com mapeamento de lacunas e riscos jurídicos`
-            ],
-            example: `Classifica o esquema como devolução de salários, traça o rastreamento financeiro entre as contas e organiza um cronograma investigativo priorizado pelas transferências mais recorrentes.`
-          },
-          {
-            code: "Pat. Rachadinha 02-ACP", role: "Ação Judicial",
-            title: "ACP por Improbidade — Esquemas de Rachadinha",
-            desc: `Template de Ação Civil Pública por Ato de Improbidade Administrativa com pedido de ressarcimento ao erário e tutela provisória de evidência para indisponibilidade de bens, voltado à apuração de esquemas de rachadinha e fraudes correlatas.`,
-            func: [
-              `Oferta de Acordo de Não Persecução Civil (ANPC) e exposição detalhada dos fatos e provas do inquérito civil`,
-              `Demonstração da legitimidade das partes e enquadramento jurídico dos atos ímprobos`,
-              `Fundamentação para bloqueio patrimonial e tutela provisória de evidência`,
-              `Individualização das condutas, quantificação do dano ao erário e análise da prescrição`,
-              `Sanções da Lei nº 8.429/92 (alterada pela Lei nº 14.230/21) e rol de testemunhas`
-            ],
-            example: `Minuta a ACP com tutela provisória de evidência para bloqueio patrimonial imediato, já sugerindo a oferta de ANPC aos investigados de menor participação.`
-          }
-        ]
-      },
-      {
-        id: "anpc", hue: 158, icon: "handshake", name: "ANPC Extrajudicial",
-        subtitle: `Acordo de Não Persecução Civil, do cabimento ao descumprimento`,
-        intro: `Cobre o ciclo completo do ANPC: analisa a viabilidade do acordo, gera a minuta do termo, orienta os encaminhamentos obrigatórios após a homologação e, se descumprido, minuta a execução judicial.`,
-        scenario: `Após a instrução do caso de Rachadinha (fictício) anterior, o investigado de menor participação propõe devolver integralmente os valores em 12 parcelas.`,
-        agents: [
-          {
-            code: "Pat. ANPC 01-Viabilidade", role: "Viabilidade",
-            title: "Análise de Viabilidade do Acordo de Não Persecução Civil",
-            desc: `Assistente jurídico especializado em improbidade administrativa e instrumentos consensuais do Ministério Público, voltado à análise do Acordo de Não Persecução Civil (ANPC).`,
-            func: [
-              `Análise de cabimento, legalidade, adequação e vantajosidade do ANPC`,
-              `Verificação de requisitos de admissibilidade e demonstração de dolo`,
-              `Avaliação de ressarcimento integral, proporcionalidade e garantias de cumprimento`,
-              `Conformidade com a Res. CNMP nº 306/2025, Res. nº 004/2026-CPJ/MPPA e LIA`,
-              `Parecer com quadro normativo, riscos, lacunas e recomendação: celebrar, ajustar ou recusar`,
-              `Em caso de recusa, a justificativa e manifestação ficam mais robustas`
-            ],
-            example: `Avalia os requisitos de admissibilidade e a proporcionalidade da proposta, concluindo pelo cabimento do ANPC mediante ajuste no número de parcelas.`
-          },
-          {
-            code: "Pat. ANPC 02-Termo", role: "Termo",
-            title: "Template do Termo de Acordo de Não Persecução Civil",
-            desc: `Template de Acordo de Não Persecução Civil (ANPC) para atuação do Ministério Público em casos de improbidade administrativa, estruturado conforme o art. 17-B da LIA e Resoluções do CNMP e CPJ/MPPA.`,
-            func: [
-              `Qualificação das partes, descrição dos fatos e enquadramento jurídico`,
-              `Ressarcimento integral do dano, multa civil e obrigações adicionais`,
-              `Cláusulas de garantias, descumprimento e suspensão da prescrição`,
-              `Tramitação institucional: aprovação, homologação e acompanhamento`,
-              `Conformidade com a Res. CNMP nº 306/2025 e Res. nº 004/2026-CPJ/MPPA`
-            ],
-            example: `Gera a minuta do Termo de ANPC com o ressarcimento integral, a multa civil correspondente e as cláusulas de garantia de cumprimento.`
-          },
-          {
-            code: "Pat. ANPC 03-Pós Acordo", role: "Pós-Acordo",
-            title: "Encaminhamentos Obrigatórios Pós-ANPC",
-            desc: `Assistente especializado nos encaminhamentos obrigatórios após a celebração do ANPC em casos de improbidade administrativa, operando em duas etapas: análise do fluxo e elaboração das peças autorizadas.`,
-            func: [
-              `Diagnóstico procedimental com base na LIA, Res. CNMP nº 306/2025 e Res. nº 004/2026-CPJ/MPPA`,
-              `Identificação das providências necessárias conforme a fase do acordo`,
-              `Árvore de decisão normativa para cada encaminhamento obrigatório`,
-              `Geração de peças: oitiva do ente lesado, consulta ao TCM, remessa ao CSMP e INFODIP`,
-              `Instauração de procedimento de acompanhamento pós-homologação judicial`
-            ],
-            example: `Aponta os encaminhamentos obrigatórios após a homologação: oitiva do ente lesado, consulta ao TCM e remessa ao CSMP.`
-          },
-          {
-            code: "Pat. ANPC 04-Descumprimento", role: "Descumprimento",
-            title: "Execução por Descumprimento de ANPC",
-            desc: `Template de Ação de Execução por Descumprimento de ANPC, destinado à cobrança judicial de obrigações inadimplidas em acordos de improbidade administrativa.`,
-            func: [
-              `Demonstração da legitimidade do MP, identificação do título executivo judicial e descrição das cláusulas descumpridas`,
-              `Apuração dos valores devidos com execução de obrigações de pagar e de fazer`,
-              `Incidência de multas contratuais e vencimento antecipado das obrigações pactuadas`,
-              `Pedidos de citação, penhora via SISBAJUD, arresto e astreintes`,
-              `Demais medidas coercitivas para satisfação integral do acordo e proteção do patrimônio público`
-            ],
-            example: `Se o investigado deixar de pagar as parcelas, minuta a execução judicial com pedido de penhora via SISBAJUD e multa pelo atraso.`
-          }
-        ]
-      },
-      {
-        id: "acordao-tcm", hue: 205, icon: "columns", name: "Acórdão do TCM",
-        subtitle: `Acórdãos do TCM/PA com débito ou multa — reprovação de contas`,
-        intro: `Examina acórdãos do Tribunal de Contas dos Municípios com imputação de débito ou multa e orienta as providências institucionais cabíveis para a Promotoria de Defesa do Patrimônio Público.`,
-        scenario: `O TCM/PA julga irregulares as contas de um ex-prefeito <i>(fictício)</i> e impõe débito pelo valor apurado em obra inacabada, decisão que transita em julgado sem recurso.`,
-        agents: [
-          {
-            code: "Pat. Acórdão TCM reprova conta", role: "Análise",
-            title: "Análise de Acórdãos do TCM/PA com Débito ou Multa",
-            desc: `Assistente especializado na análise de acórdãos do TCM/PA com imputação de débito ou multa, voltado às Promotorias de Defesa do Patrimônio Público, com elaboração de minutas de Recomendação Ministerial.`,
-            func: [
-              `Exame da constituição e exequibilidade do título executivo`,
-              `Verificação de prescrição e identificação da legitimidade para execução`,
-              `Árvore de decisão para indicação das providências institucionais adequadas`,
-              `Avaliação de eventual cabimento de improbidade administrativa`,
-              `Elaboração de minuta de Recomendação Ministerial ao Município para medidas executivas`
-            ],
-            example: `Examina a exequibilidade do título, verifica que não há prescrição, e elabora a minuta de Recomendação ao Município para inscrição em dívida ativa e execução do crédito.`
-          }
-        ]
-      },
-      {
-        id: "acp-generica", hue: 322, icon: "gavel", name: "ACP Genérica",
-        subtitle: `Ação civil pública por improbidade administrativa — modelo geral`,
-        intro: `Template geral de ACP por improbidade para casos que não se enquadram em um tema específico já coberto por outro agente, mantendo os mesmos parâmetros de individualização de condutas e dosimetria da LIA.`,
-        scenario: `Caso de improbidade com contornos que não se encaixam nos temas anteriores: desvio de verba de convênio estadual para finalidade diversa da pactuada.`,
-        agents: [
-          {
-            code: "Pat. Elaboração ACP Genérica", role: "Ação Judicial",
-            title: "Template de Ação Civil Pública por Improbidade Administrativa",
-            desc: `Template de Ação Civil Pública por Ato de Improbidade Administrativa, estruturado conforme a Lei nº 8.429/1992 com as alterações da Lei nº 14.230/2021 e parâmetros da jurisprudência dos tribunais superiores.`,
-            func: [
-              `Narrativa dos fatos com individualização das condutas e demonstração do dolo específico`,
-              `Tipificação única do ato ímprobo e quantificação do dano ao erário`,
-              `Eventual dano moral coletivo e pedidos cautelares fundamentados`,
-              `Aplicação individualizada das sanções do art. 12 da LIA`,
-              `Vedação à responsabilização solidária automática e ênfase no contraditório no IC`
-            ],
-            example: `Estrutura a petição inicial com narrativa cronológica, individualização das condutas, quantificação do dano e aplicação individualizada das sanções do art. 12 da LIA a cada envolvido.`
-          }
-        ]
-      },
-      {
-        id: "contrainteligencia", hue: 188, icon: "shieldsearch", name: "Contrainteligência ACP",
-        subtitle: `Teste de resistência da petição inicial antes ou depois do protocolo`,
-        intro: `Aplica os mesmos critérios que um juiz usaria para o recebimento da inicial, funcionando como contrainteligência para revisar a robustez de uma ACP antes do protocolo — ou mapear pontos fracos de uma já ajuizada.`,
-        scenario: `Antes de protocolar a ACP do caso de desvio de convênio, a Promotoria quer testar se a peça resistiria a uma impugnação liminar.`,
-        agents: [
-          {
-            code: "Pat. Contrainteligência ACP", role: "Contrainteligência",
-            title: "Análise de Recebimento da Petição Inicial — ACP de Improbidade",
-            desc: `Assistente especializado para análise judicial dos requisitos de recebimento da petição inicial em ações de improbidade administrativa após a Lei nº 14.230/2021. Funciona também como contrainteligência para verificar se a ACP minutada ou ajuizada está completa e adequada.`,
-            func: [
-              `Exame de competência, legitimidade, dolo específico, tipicidade, justa causa e prescrição`,
-              `Análise de individualização das condutas, dano ao erário e enriquecimento ilícito`,
-              `Aplicação dos parâmetros do STF (Temas 1199 e 897), CPC e LIA reformada`,
-              `Enquadramento no art. 11 da LIA e indicação objetiva de hipóteses de recebimento, rejeição ou emenda`,
-              `Uso como contrainteligência: verificação da completude e adequação da ACP antes do protocolo`,
-              `ACP já ajuizada — mapeamento dos "pontos fracos"`
-            ],
-            example: `Roda a mesma checklist que um juiz aplicaria no recebimento — competência, dolo específico, individualização, prescrição — e aponta que falta reforçar o dolo de um dos réus antes do protocolo.`
-          }
-        ]
-      },
-      {
-        id: "shows-festividades", hue: 330, icon: "ticket", name: "Shows e Festividades",
-        subtitle: `Contratações públicas de shows, eventos e festividades`,
-        intro: `Analisa a regularidade de contratações de shows e eventos públicos frente à situação fiscal do ente, recomenda ajustes preventivos e, se necessário, minuta ACP com pedido de urgência para suspender o evento.`,
-        scenario: `Prefeitura de Serra Azul <i>(fictícia)</i> contrata, por inexigibilidade, show de artista renomado por valor equivalente a 3 meses da folha de merenda escolar, enquanto atrasa salários dos professores.`,
-        agents: [
-          {
-            code: "Pat. Festas 01-Análise", role: "Análise",
-            title: "Análise de Contratações Públicas de Shows e Eventos",
-            desc: `Assistente jurídico especializado na análise de contratações públicas de shows, eventos e festividades, voltado à atuação do Ministério Público na defesa do patrimônio público.`,
-            func: [
-              `Análise da regularidade da inexigibilidade de licitação e consagração do artista`,
-              `Verificação de exclusividade do empresário e justificativa de preços`,
-              `Avaliação da proporcionalidade da despesa diante da situação fiscal do ente`,
-              `Identificação de indícios de improbidade administrativa e cabimento de tutela de urgência`,
-              `Quadro sintético de irregularidades com encaminhamentos: recomendação, TCE/TCM, ACP ou investigação`
-            ],
-            example: `Cruza o valor do cachê com a situação fiscal do Município, identifica atraso salarial concomitante e classifica a despesa como desproporcional, sugerindo tutela de urgência.`
-          },
-          {
-            code: "Pat. Festas 02-Recomendação", role: "Recomendação",
-            title: "Recomendação Ministerial — Gastos com Shows e Eventos",
-            desc: `Template de Recomendação Ministerial para prevenção de gastos públicos desproporcionais com shows, festividades e eventos municipais, com base na situação fiscal do ente e na defesa de serviços essenciais.`,
-            func: [
-              `Fundamentação com base na situação fiscal, atrasos salariais e deficiência de serviços essenciais`,
-              `Orientações para suspensão ou revisão do evento e reforço da publicidade dos contratos`,
-              `Verificação de descumprimento de pisos constitucionais e calamidade financeira`,
-              `Comunicação a órgãos de controle (TCE/TCM) e fixação de prazo para manifestação do gestor`,
-              `Priorização de despesas essenciais em saúde, educação e infraestrutura`
-            ],
-            example: `Minuta recomendação para suspensão do evento até a regularização dos salários, com prazo de resposta ao gestor.`
-          },
-          {
-            code: "Pat. Festas 03-ACP", role: "Ação Judicial",
-            title: "ACP com Tutela de Urgência — Shows e Festividades Públicas",
-            desc: `Template de Ação Civil Pública com pedido de tutela de urgência para impedir a realização de shows e festividades públicas incompatíveis com a realidade fiscal do ente ou com a prestação de serviços essenciais.`,
-            func: [
-              `Demonstração da desproporcionalidade do gasto e precariedade de serviços públicos essenciais`,
-              `Pedido liminar de suspensão do evento e vedação de pagamentos`,
-              `Aplicação dos princípios da razoabilidade, moralidade, eficiência e responsabilidade fiscal`,
-              `Multa pessoal ao gestor em caso de descumprimento da ordem judicial`,
-              `Eventual ressarcimento ao erário e subsídios para atuação preventiva do MP`
-            ],
-            example: `Diante da manutenção do evento, minuta a ACP com pedido liminar de suspensão e multa pessoal ao gestor em caso de descumprimento.`
-          }
-        ]
-      },
-      {
-        id: "acumulo-cargos", hue: 84, icon: "briefcase", name: "Acúmulo de Cargos",
-        subtitle: `Acumulação ilegal de cargos, empregos e funções públicas`,
-        intro: `Investiga cargos e vínculos públicos irregulares, orienta a regularização por via administrativa e, mantida a irregularidade, minuta a ação de improbidade com ressarcimento proporcional ao período acumulado.`,
-        scenario: `Um servidor acumula dois cargos públicos de horários incompatíveis em municípios vizinhos <i>(fictícios)</i>, ambos com registro de frequência integral no mesmo período.`,
-        agents: [
-          {
-            code: "Pat. Acúmulo Cargo 01-Análise", role: "Investigação",
-            title: "Investigação de Acúmulo Ilegal de Cargos Públicos",
-            desc: `Assistente investigativo para apuração de cargos e vínculos públicos irregulares em hipóteses de improbidade administrativa, abrangendo cargos comissionados em desvio, acumulação ilegal e contratações temporárias irregulares.`,
-            func: [
-              `Triagem inicial com identificação de agentes, cargos, períodos e legislação aplicável`,
-              `Avaliação de conformidade com a Constituição Federal e precedentes do STF`,
-              `Análise de dolo específico, dano ao erário, prescrição e riscos jurídicos`,
-              `Estruturação de diligências por fases investigativas`,
-              `Parecer sintético: atuação, novas diligências ou arquivamento fundamentado`,
-              `Tomada de decisão sempre será do(a) Promotor(a) de Justiça`
-            ],
-            example: `Confronta os horários de ambos os cargos, identifica a incompatibilidade e organiza as diligências para apurar dolo e dano ao erário em cada vínculo.`
-          },
-          {
-            code: "Pat. Acúmulo Cargo 02-Recomend", role: "Recomendação",
-            title: "Recomendação Ministerial — Acumulação Ilícita de Cargos",
-            desc: `Template de Recomendação Ministerial para casos de acumulação ilícita de cargos públicos, orientando o servidor investigado a regularizar a situação funcional mediante opção por um dos cargos incompatíveis.`,
-            func: [
-              `Fundamentação no art. 37, XVI e XVII, da Constituição Federal`,
-              `Registro dos elementos apurados no procedimento ministerial`,
-              `Observância da boa-fé do servidor até a ciência formal da irregularidade`,
-              `Comunicação aos órgãos públicos envolvidos para providências administrativas cabíveis`,
-              `Aplicação dos princípios da legalidade, moralidade e eficiência administrativa`
-            ],
-            example: `Minuta recomendação para que o servidor opte por um dos cargos em prazo razoável, respeitando a boa-fé até a ciência formal.`
-          },
-          {
-            code: "Pat. Acúmulo Cargo 03-ACP", role: "Ação Judicial",
-            title: "ACP por Improbidade — Acumulação Ilícita de Cargos",
-            desc: `Template especializado para elaboração de Ação Civil Pública por ato de improbidade administrativa decorrente de acumulação ilícita de cargos públicos, conforme a LIA com redação da Lei nº 14.230/2021.`,
-            func: [
-              `Individualização das condutas e demonstração do dolo específico`,
-              `Análise da incompatibilidade de horários e apuração do enriquecimento ilícito`,
-              `Quantificação do dano ao erário com vinculação às provas do procedimento`,
-              `Pedidos de tutela provisória e aplicação individualizada das sanções do art. 12 da LIA`,
-              `Relação dos documentos probatórios indispensáveis ao protocolo da ação`
-            ],
-            example: `Se o servidor mantiver os dois cargos após o prazo, minuta a ACP por improbidade com pedido de ressarcimento proporcional ao período de acumulação irregular.`
-          }
-        ]
-      },
-      {
-        id: "requisicao", hue: 250, icon: "mailwarn", name: "Requisição Ministerial",
-        subtitle: `Descumprimento de requisições do Ministério Público`,
-        intro: `Analisa omissões ou recusas de autoridades diante de requisições do MP e gera as minutas necessárias — despachos, ofícios e ordens de missão — para preservar a efetividade da investigação.`,
-        scenario: `Uma Secretaria Municipal <i>(fictícia)</i> ignora, por duas vezes, o ofício que requisitava documentos essenciais para instruir um inquérito civil.`,
-        agents: [
-          {
-            code: "Pat. Desc. de Requisição MP", role: "Requisição",
-            title: "Descumprimento de Requisições do Ministério Público",
-            desc: `Assistente especializado para atuação ministerial em casos de descumprimento de requisições do MP, analisando omissões ou recusas de autoridades e gerando minutas de despachos, ofícios e demais atos necessários.`,
-            func: [
-              `Análise de omissões ou recusas de autoridades e órgãos públicos`,
-              `Árvore de decisão baseada em parâmetros institucionais e jurisprudenciais`,
-              `Avaliação das medidas administrativas, cíveis e criminais cabíveis com seus riscos e vantagens`,
-              `Geração de minutas completas de despachos, ofícios e ordens de missão`,
-              `Foco na obtenção das informações requisitadas e preservação da efetividade da investigação`
-            ],
-            example: `Analisa o histórico de omissões, percorre a árvore de decisão institucional e gera minuta de novo ofício com prazo peremptório, já indicando as medidas cabíveis em caso de nova recusa.`
-          }
-        ]
-      },
-      {
-        id: "nf-improbidade", hue: 8, icon: "docsearch", name: "NF de Improbidade",
-        subtitle: `Análise inicial de Notícia de Fato envolvendo improbidade`,
-        intro: `Faz a triagem jurídica inicial de Notícias de Fato sobre improbidade administrativa e já sugere o encaminhamento mais adequado — arquivamento, procedimento administrativo ou inquérito civil.`,
-        scenario: `Uma Notícia de Fato relata, de forma genérica, "corrupção" na Prefeitura, sem apontar fatos, datas ou valores específicos.`,
-        agents: [
-          {
-            code: "Pat. NF Improbidade", role: "Triagem",
-            title: "Análise de Notícias de Fato — Improbidade Administrativa",
-            desc: `Assistente ministerial para análise inicial de Notícias de Fato envolvendo improbidade administrativa, alinhado à Lei nº 14.230/2021 e ao Roteiro do CAODPP/MPPA, com geração de minutas de despacho ou promoção de arquivamento.`,
-            func: [
-              `Avaliação da triagem jurídica com exame de tipicidade objetiva e subjetiva, prescrição e tutela via ACP`,
-              `Gravidade do caso, diligências preliminares e eficiência administrativa`,
-              `Aplicação do Roteiro do CAODPP/MPPA e da Resolução CNMP nº 174/2017`,
-              `Sugestão de encaminhamento: arquivamento, instauração de PA ou conversão em IC`,
-              `Geração de minutas estruturadas de despacho de registro ou promoção de arquivamento`
-            ],
-            example: `Aplica a triagem do Roteiro CAODPP/MPPA, identifica ausência de elementos mínimos de tipicidade e minuta despacho determinando a notificação do noticiante para emenda, antes de qualquer arquivamento.`
-          }
-        ]
-      }
-    ];
 
     /* ============================= BUILD SLIDES ============================= */
     const slides = [];
