@@ -34,6 +34,22 @@
       --fs-example: clamp(1.4rem, .8vw + 1.15rem, 2.05rem);
     }
 
+:root[data-theme="light"] {
+  --bg:#f4f6fb;
+  --bg2:#eaeef8;
+  --panel:#ffffff;
+  --panel2:#eaeef8;
+  --line:rgba(16, 26, 48, 0.1);
+  --ink:#101a30;
+  --ink-dim:#4b5875;
+  --ink-dimmer:#7686a8;
+  --orange:#c85e05;
+  --orange-ink:#c85e05;
+  --navy:#dbe2f0;
+  --red:#a3212f;
+}
+
+
     * {
       box-sizing: border-box;
     }
@@ -1014,6 +1030,12 @@
       color: var(--accent);
     }
 
+#btnThemeToggle .icon-sun { display: inline; }
+#btnThemeToggle .icon-moon { display: none; }
+:root[data-theme="light"] #btnThemeToggle .icon-sun { display: none; }
+:root[data-theme="light"] #btnThemeToggle .icon-moon { display: inline; }
+
+
     /* ---------- MENU OVERLAY ---------- */
     .overlay {
       position: fixed;
@@ -1402,6 +1424,7 @@
         <span class="foot-count" id="slideCount">1 / 1</span>
       </div>
       <div class="foot-right">
+      <button class="navbtn" id="btnThemeToggle" title="Alternar tema claro/escuro"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></button>
         <button class="navbtn" id="btnHelp" title="Atalhos (?)">?</button>
         <button class="navbtn" id="btnMenu" title="Menu (M)">☰</button>
         <button class="navbtn" id="btnFull" title="Tela cheia (F)">⛶</button>
@@ -3043,7 +3066,29 @@
       }
       if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-      else if (e.key === 'Home') { goTo(0); }
+      else if (e.key === 'Home') { goTo(0);
+
+// Theme Toggle Script
+(function(){
+  var root = document.documentElement;
+  var btn  = document.getElementById('btnThemeToggle');
+  var KEY  = 'theme-preference';
+
+  var saved = localStorage.getItem(KEY);
+  if (saved === 'dark' || saved === 'light') {
+    root.setAttribute('data-theme', saved);
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function(){
+      var current = root.getAttribute('data-theme');
+      var next = (current === 'light') ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(KEY, next);
+    });
+  }
+})();
+ }
       else if (e.key === 'End') { goTo(slides.length - 1); }
       else if (e.key === 'm' || e.key === 'M') { openMenu(); }
       else if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); }
