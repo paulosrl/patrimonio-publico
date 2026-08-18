@@ -1032,10 +1032,21 @@
       color: var(--accent);
     }
 
-    #btnThemeToggle .icon-sun { display: inline; }
-    #btnThemeToggle .icon-moon { display: none; }
-    :root[data-theme="light"] #btnThemeToggle .icon-sun { display: none; }
-    :root[data-theme="light"] #btnThemeToggle .icon-moon { display: inline; }
+    #btnThemeToggle .icon-sun {
+      display: inline;
+    }
+
+    #btnThemeToggle .icon-moon {
+      display: none;
+    }
+
+    :root[data-theme="light"] #btnThemeToggle .icon-sun {
+      display: none;
+    }
+
+    :root[data-theme="light"] #btnThemeToggle .icon-moon {
+      display: inline;
+    }
 
     /* ---------- MENU OVERLAY ---------- */
     .overlay {
@@ -1426,7 +1437,8 @@
         <span class="foot-count" id="slideCount">1 / 1</span>
       </div>
       <div class="foot-right">
-        <button class="navbtn" id="btnThemeToggle" title="Alternar tema claro/escuro"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></button>
+        <button class="navbtn" id="btnThemeToggle" title="Alternar tema claro/escuro"><span class="icon-sun"
+            aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></button>
         <button class="navbtn" id="btnHelp" title="Atalhos (?)">?</button>
         <button class="navbtn" id="btnMenu" title="Menu (M)">☰</button>
         <button class="navbtn" id="btnFull" title="Tela cheia (F)">⛶</button>
@@ -1487,6 +1499,33 @@
       brain: `<path d="M16 14a6 6 0 0 1 11.7-2A6 6 0 0 1 36 18a6 6 0 0 1-1.5 11.8A6 6 0 0 1 24 38a6 6 0 0 1-10.5-4A6 6 0 0 1 8 26a6 6 0 0 1 8-12z" stroke-width="3"/><path d="M24 12v26M16 20h16M14 28h20" stroke-width="2.5"/>`
     };
     function iconSvg(key) { return `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">${ICONS[key] || ICONS.spark}</svg>`; }
+
+    function copyPromptText(btn, id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.textContent.replace(/^"|"$/g, '');
+      const done = () => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '✓ Copiado!';
+        btn.disabled = true;
+        setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) { }
+        document.body.removeChild(ta);
+        done();
+      }
+    }
+
+    function openCopilot() {
+      window.open('https://copilot.microsoft.com/', '_blank', 'noopener');
+    }
 
     const ROLE_ICON = {
       "Identificação": "docsearch", "Análise": "docsearch", "Investigação": "docsearch", "Triagem": "docsearch",
@@ -2199,7 +2238,17 @@
         <div class="tx">
           <b style="color:#ffedd5;">Exemplo Prático de Metaprompting</b>
           <span class="orange-highlight" style="color:#bae6fd !important;">Comando de Entrada do Promotor</span>
-          <span style="color:#ffffff;font-size:calc(var(--fs-example) * 1.1);line-height:1.5;font-weight:600;margin-top:.55em;">"Quero analisar um processo de fraude em licitação envolvendo superfaturamento de obra pública. Me ajude a criar o melhor prompt possível para que você identifique os indícios de direcionamento do certame e o dano ao erário neste caso."</span>
+          <span id="slide5-prompt-text" style="color:#ffffff;font-size:calc(var(--fs-example) * 1.1);line-height:1.5;font-weight:600;margin-top:.55em;">"Quero analisar um processo de fraude em licitação envolvendo superfaturamento de obra pública. Me ajude a criar o melhor prompt possível para que você identifique os indícios de direcionamento do certame e o dano ao erário neste caso."</span>
+          <div style="display:flex;gap:.7em;margin-top:1em;flex-wrap:wrap;">
+            <button onclick="copyPromptText(this,'slide5-prompt-text')" style="display:flex;align-items:center;gap:.5em;padding:.6em 1.1em;border-radius:10px;border:1.5px solid rgba(251,146,60,0.6);background:rgba(232,114,12,0.22);color:#ffedd5;font-weight:700;font-size:calc(var(--fs-example) * 0.85);cursor:pointer;transition:background .15s;">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em;"><rect x="9" y="8" width="30" height="35" rx="3"/><rect x="16" y="4" width="16" height="8" rx="2"/></svg>
+              Copiar Prompt
+            </button>
+            <button onclick="openCopilot()" style="display:flex;align-items:center;gap:.5em;padding:.6em 1.1em;border-radius:10px;border:1.5px solid rgba(56,189,248,0.55);background:rgba(15,32,64,0.6);color:#bae6fd;font-weight:700;font-size:calc(var(--fs-example) * 0.85);cursor:pointer;transition:background .15s;">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em;"><path d="M28 8h12v12"/><path d="M40 8L20 28"/><path d="M34 26v10a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4h10"/></svg>
+              Abrir Copilot
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -2465,7 +2514,7 @@
           </div>
         </div>
         <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:0.9em 1.1em;margin-top:1.4em;">
-          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Por que Funciona:</b> Ativa fundamentação legal específica (Art. 41 CPP) e foca a resposta no objetivo tático do Promotor.</span>
+          <span style="color:#bbf7d0;font-size:calc(var(--fs-small) * 1.05);display:block;line-height:1.4;font-weight:600;">🎯 <b>Por que Funciona:</b> Ativa fundamentação legal específica e foca a resposta no objetivo tático do Promotor.</span>
         </div>
       </div>
 
@@ -3182,41 +3231,41 @@
     /* init */
     buildMenu();
     goTo(0);
-  
-  // Touch swipe support for mobile devices
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchEndX = 0;
-  let touchEndY = 0;
 
-  document.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
+    // Touch swipe support for mobile devices
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
 
-  document.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  }, { passive: true });
+    document.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
 
-  function handleSwipe() {
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
-      if (diffX < 0) {
-        // Swipe left -> Next
-        if (typeof nextSlide === 'function') nextSlide();
-        else if (typeof next === 'function') next();
-        else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current + 1);
-      } else {
-        // Swipe right -> Prev
-        if (typeof prevSlide === 'function') prevSlide();
-        else if (typeof prev === 'function') prev();
-        else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current - 1);
+    document.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) {
+          // Swipe left -> Next
+          if (typeof nextSlide === 'function') nextSlide();
+          else if (typeof next === 'function') next();
+          else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current + 1);
+        } else {
+          // Swipe right -> Prev
+          if (typeof prevSlide === 'function') prevSlide();
+          else if (typeof prev === 'function') prev();
+          else if (typeof goTo === 'function' && typeof current !== 'undefined') goTo(current - 1);
+        }
       }
     }
-  }
 
   </script>
 </body>
