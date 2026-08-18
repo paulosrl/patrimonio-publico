@@ -19,6 +19,9 @@
       --orange-ink: #ffb066;
       --navy: #1b3a6b;
       --red: #c62a3a;
+      --ink-onfixed: #f2f5fb;
+      --ink-dim-onfixed: #cbe0f8;
+      --ink-dimmer-onfixed: #a5c7f0;
       --hue: 28;
       --accent: hsl(var(--hue) 78% 60%);
       --accent-soft: hsl(var(--hue) 78% 60% / .16);
@@ -32,6 +35,21 @@
       --fs-small: clamp(1rem, .25vw + .85rem, 1.2rem);
       --fs-tiny: clamp(.85rem, .18vw + .74rem, 1rem);
       --fs-example: clamp(1.4rem, .8vw + 1.15rem, 2.05rem);
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f4f6fb;
+      --bg2: #eaeef8;
+      --panel: #ffffff;
+      --panel2: #eaeef8;
+      --line: rgba(16, 26, 48, 0.1);
+      --ink: #101a30;
+      --ink-dim: #365079;
+      --ink-dimmer: #5a6f92;
+      --orange: #c85e05;
+      --orange-ink: #c85e05;
+      --navy: #dbe2f0;
+      --red: #a3212f;
     }
 
     * {
@@ -934,7 +952,7 @@
 
     .foot-left .ft-title {
       font-size: var(--fs-tiny);
-      color: var(--ink-dimmer);
+      color: var(--ink-dimmer-onfixed);
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -952,7 +970,7 @@
       display: flex;
       align-items: center;
       gap: .9em;
-      color: var(--ink-dim);
+      color: var(--ink-dim-onfixed);
       font-size: var(--fs-small);
     }
 
@@ -961,7 +979,7 @@
       align-items: center;
       gap: .55em;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--ink-onfixed);
     }
 
     .theme-chip .d {
@@ -973,7 +991,7 @@
     }
 
     .foot-count {
-      color: var(--ink-dimmer);
+      color: var(--ink-dimmer-onfixed);
       font-variant-numeric: tabular-nums;
     }
 
@@ -989,7 +1007,7 @@
       border-radius: 12px;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, .04);
-      color: var(--ink);
+      color: var(--ink-onfixed);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1013,6 +1031,11 @@
       border-color: var(--accent-line);
       color: var(--accent);
     }
+
+    #btnThemeToggle .icon-sun { display: inline; }
+    #btnThemeToggle .icon-moon { display: none; }
+    :root[data-theme="light"] #btnThemeToggle .icon-sun { display: none; }
+    :root[data-theme="light"] #btnThemeToggle .icon-moon { display: inline; }
 
     /* ---------- MENU OVERLAY ---------- */
     .overlay {
@@ -1044,6 +1067,7 @@
     .overlay-head h3 {
       margin: 0;
       font-size: var(--fs-h3);
+      color: var(--ink-onfixed);
     }
 
     .overlay-body {
@@ -1058,7 +1082,7 @@
       border-radius: 50%;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, .05);
-      color: var(--ink);
+      color: var(--ink-onfixed);
       font-size: 1.3rem;
       cursor: pointer;
     }
@@ -1123,7 +1147,7 @@
       padding: .7em 0;
       border-bottom: 1px solid var(--line);
       font-size: var(--fs-body);
-      color: var(--ink-dim);
+      color: var(--ink-dim-onfixed);
     }
 
     .help-body kbd {
@@ -1147,7 +1171,7 @@
       border-radius: 999px;
       padding: .5em 1.2em;
       font-size: var(--fs-tiny);
-      color: var(--ink-dim);
+      color: var(--ink-dim-onfixed);
       opacity: 0;
       transition: opacity .4s ease;
       pointer-events: none;
@@ -1402,6 +1426,7 @@
         <span class="foot-count" id="slideCount">1 / 1</span>
       </div>
       <div class="foot-right">
+        <button class="navbtn" id="btnThemeToggle" title="Alternar tema claro/escuro"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></button>
         <button class="navbtn" id="btnHelp" title="Atalhos (?)">?</button>
         <button class="navbtn" id="btnMenu" title="Menu (M)">☰</button>
         <button class="navbtn" id="btnFull" title="Tela cheia (F)">⛶</button>
@@ -1906,10 +1931,10 @@
     <div class="cover-bottom">
       <div class="cover-credit">
         Autores: <b>Rodrigo Aquino</b> e <b>Paulo Lima</b><br>
-        <span style="color:#e0f2fe;font-weight:600;">27 e 28 de agosto de 2026</span>
+        <span style="color:var(--ink);font-weight:600;">27 e 28 de agosto de 2026</span>
       </div>
       <div class="cover-tag">
-        <b style="color:#fb923c;font-size:1.1em;display:inline-block;letter-spacing:0.02em;">Escritório de Inteligência Artificial · CIIA / CAODPP</b><br>
+        <b style="color:var(--orange-ink);font-size:1.1em;display:inline-block;letter-spacing:0.02em;">Escritório de Inteligência Artificial · CIIA / CAODPP</b><br>
         Comitê de Governança de Inovação e Inteligência Artificial<br>
         <span style="color:var(--accent)">ciia.mppa.mp.br</span>
       </div>
@@ -2004,7 +2029,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker"><span class="dot"></span>Fundamentos da IA Generativa</div>
     <h2 class="h2">O que é Engenharia de Prompts?</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.1);max-width:68ch">Desenvolver e refinar instruções para obter os resultados mais precisos e relevantes dos modelos de IA Generativa.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.1);max-width:68ch">Desenvolver e refinar instruções para obter os resultados mais precisos e relevantes dos modelos de IA Generativa.</p>
     <div style="display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start;margin-top:.6em;">
       
       <!-- Coluna 1: Imagem ep-01.png -->
@@ -2071,7 +2096,7 @@
   <div class="slide" data-kind="agent">
     <div class="kicker"><span class="dot"></span>Arquitetura de Comando</div>
     <h2 class="h2">Os 4 Pilares de um Bom Prompt</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.05);max-width:68ch">Para que a IA compreenda exatamente o que você precisa, o comando deve conter 4 elementos estruturais indispensáveis.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.05);max-width:68ch">Para que a IA compreenda exatamente o que você precisa, o comando deve conter 4 elementos estruturais indispensáveis.</p>
     <div class="agenda-grid card-deck" style="grid-template-columns:repeat(2,1fr);margin-top:1em;gap:20px;">
       
       <!-- Pillar 1: Persona -->
@@ -2140,7 +2165,7 @@
   <div class="slide" data-kind="agent">
     <div class="kicker"><span class="dot"></span>IA Refinando IA</div>
     <h2 class="h2">Metaprompting: Use a IA para Desenhar seus Próprios Comandos</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:68ch">A IA pode atuar como sua assistente na própria construção das instruções que ela mesma vai executar.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:68ch">A IA pode atuar como sua assistente na própria construção das instruções que ela mesma vai executar.</p>
     <div style="display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:start;">
       <div class="agenda-grid card-deck" style="grid-template-columns:1fr;gap:18px;margin-top:0;">
         <div class="agenda-card" style="padding:1.3em;background:rgba(15,32,64,0.85);border:1px solid rgba(96,165,250,0.28);align-items:flex-start;">
@@ -2168,7 +2193,7 @@
           </div>
         </div>
       </div>
-      <div class="agenda-card" style="padding:1.45em;background:linear-gradient(135deg, rgba(232,114,12,0.28) 0%, rgba(198,42,58,0.2) 50%, rgba(249,115,22,0.12) 100%);border:1.5px solid rgba(251,146,60,0.6);box-shadow:0 8px 32px rgba(232,114,12,0.18);align-items:flex-start;">
+      <div class="agenda-card" style="padding:1.45em;background:linear-gradient(135deg, rgba(232,114,12,0.35) 0%, rgba(198,42,58,0.28) 50%, rgba(249,115,22,0.18) 100%), linear-gradient(rgba(15,32,64,0.92), rgba(15,32,64,0.92));border:1.5px solid rgba(251,146,60,0.6);box-shadow:0 8px 32px rgba(232,114,12,0.18);align-items:flex-start;">
         <div class="num">Ex.</div>
         <div class="ic" style="color:#fdba74;">${iconSvg('megaphone')}</div>
         <div class="tx">
@@ -2191,7 +2216,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker"><span class="dot"></span>Jornada de Aprendizado</div>
     <h2 class="h2">A Evolução do Usuário: De Respostas Rápidas a Raciocínio Complexo</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.1);max-width:70ch">Eixo de Desenvolvimento: <b style="color:#38bdf8;">Tempo & Experiência</b> do Operador do Direito na Engenharia de Prompts.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.1);max-width:70ch">Eixo de Desenvolvimento: <b style="color:#38bdf8;">Tempo & Experiência</b> do Operador do Direito na Engenharia de Prompts.</p>
     
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:1.2em;">
       
@@ -2269,7 +2294,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Antipadrões de Uso</div>
     <h2 class="h2">Como NÃO Usar a IA</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.1);max-width:70ch">Três posturas inadequadas que comprometem a eficácia e a segurança da atuação jurídica.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.1);max-width:70ch">Três posturas inadequadas que comprometem a eficácia e a segurança da atuação jurídica.</p>
     
     <div style="display:grid;grid-template-columns:1fr 2.2fr;gap:28px;align-items:center;margin-top:1em;">
       
@@ -2342,7 +2367,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 01 de 05</div>
     <h2 class="h2">Erro 1: A Persona Inflada</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">O excesso de adjetivos gera <b style="color:#f87171;">poluição informacional</b> e reduz a performance da IA.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">O excesso de adjetivos gera <b style="color:#f87171;">poluição informacional</b> e reduz a performance da IA.</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2400,7 +2425,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 02 de 05</div>
     <h2 class="h2">Erro 2: O Prompt Genérico</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Comandos sem escopo delimitado produzem respostas superficiais que resumem o óbvio.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Comandos sem escopo delimitado produzem respostas superficiais que resumem o óbvio.</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2458,7 +2483,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 03 de 05</div>
     <h2 class="h2">Erro 3: Misturar Análise e Redação</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Misturar a análise probatória e a escrita da peça final no mesmo comando prejudica a qualidade de ambas as tarefas.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Misturar a análise probatória e a escrita da peça final no mesmo comando prejudica a qualidade de ambas as tarefas.</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2517,7 +2542,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 04 de 05</div>
     <h2 class="h2">Erro 4: Comandos Negativos (Sem Contraponto)</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA responde melhor a <b style="color:#4ade80;">comandos afirmativos</b>. Dê direção clara do que fazer em vez de acumular proibições.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA responde melhor a <b style="color:#4ade80;">comandos afirmativos</b>. Dê direção clara do que fazer em vez de acumular proibições.</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2575,7 +2600,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#f87171"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Erros Comuns · 05 de 05</div>
     <h2 class="h2">Erro 5: O Excesso de Instruções (Trade-off)</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Quanto mais instruções simultâneas você fornece, menor será o nível de atenção dispensado a cada uma delas.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Quanto mais instruções simultâneas você fornece, menor será o nível de atenção dispensado a cada uma delas.</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2634,7 +2659,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Arquitetura Cognitiva</div>
     <h2 class="h2">O Padrão Oculto: A Gestão do Foco Cognitivo</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch"><b>Por que os 5 erros destroem a precisão da IA?</b> Todos compartilham uma falha fatal: <b style="color:#f87171;">o desperdício da janela de contexto.</b></p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch"><b>Por que os 5 erros destroem a precisão da IA?</b> Todos compartilham uma falha fatal: <b style="color:#f87171;">o desperdício da janela de contexto.</b></p>
     
     <!-- Grid com 4 Cartões Cognitivos Animados -->
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:1em;">
@@ -2704,7 +2729,7 @@
   <div class="slide" data-kind="agent">
     <div class="kicker" style="color:#f87171;"><span class="dot" style="background:#f87171;box-shadow:0 0 14px #f87171"></span>Governança e Responsabilidade</div>
     <h2 class="h2">O Fator Humano: Limitações Técnicas Críticas</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA rascunha, o <b style="color:#4ade80;">humano valida</b>. Onde focar sua revisão jurídica rígida:</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">A IA rascunha, o <b style="color:#4ade80;">humano valida</b>. Onde focar sua revisão jurídica rígida:</p>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:1.2em;">
       
@@ -2780,7 +2805,7 @@
   <div class="slide" data-kind="philosophy">
     <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Checklist Final</div>
     <h2 class="h2">A Partitura Perfeita: Síntese Estratégica</h2>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Resumo executivo das diretrizes técnicas de Engenharia de Prompts.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:72ch">Resumo executivo das diretrizes técnicas de Engenharia de Prompts.</p>
     
     <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:28px;align-items:center;margin-top:1em;">
       
@@ -2820,7 +2845,7 @@
           ${iconSvg('spark')}
         </div>
         <h4 style="color:#ffffff;font-size:calc(var(--fs-h3) * 1.1);font-weight:800;margin:0 0 0.5em 0;">Acesse o Portal do CIIA</h4>
-        <p style="color:#e2e8f0;font-size:calc(var(--fs-small) * 1.1);margin:0 0 1.5em 0;line-height:1.4;">Acesse repositórios e materiais institucionais:</p>
+        <p style="font-size:calc(var(--fs-small) * 1.1);margin:0 0 1.5em 0;line-height:1.4;">Acesse repositórios e materiais institucionais:</p>
         <a href="https://ciia.mppa.mp.br" target="_blank" class="pill" style="font-size:1.15rem;padding:0.7em 1.6em;text-decoration:none;display:inline-block;background:var(--orange-ink,#e8720c);color:#ffffff;font-weight:800;border-radius:999px;box-shadow:0 4px 16px rgba(232,114,12,0.4);">ciia.mppa.mp.br</a>
       </div>
 
@@ -2838,7 +2863,7 @@
   <div class="slide closing" data-kind="closing">
     <div class="kicker" style="color:#38bdf8;"><span class="dot" style="background:#38bdf8;box-shadow:0 0 14px #38bdf8"></span>Maturidade Prática</div>
     <h1 class="h1" style="font-size:calc(var(--fs-h1) * 1.05);">Observação e <span class="accent" style="color:#38bdf8;">Adaptação</span></h1>
-    <p class="lede" style="color:#e2e8f0;font-size:calc(var(--fs-body) * 1.15);max-width:70ch">Utilize a IA a seu favor. O verdadeiro domínio não vem de decorar prompts, mas de <b style="color:#ffffff;">analisar o comportamento do modelo</b>.</p>
+    <p class="lede" style="font-size:calc(var(--fs-body) * 1.15);max-width:70ch">Utilize a IA a seu favor. O verdadeiro domínio não vem de decorar prompts, mas de <b style="color:var(--ink);">analisar o comportamento do modelo</b>.</p>
     
     <!-- 3 Estatísticas/Passos Animados em Cartões -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:1.4em;width:100%;max-width:1300px;">
@@ -2890,12 +2915,12 @@
     <div style="max-width:clamp(540px, 63vw, 860px);width:100%;margin:auto 0;text-align:left;z-index:2;">
       
       <!-- FRASE DE REFLEXÃO COM +20% NO TAMANHO DA FONTE E BRANCO PURO -->
-      <div style="font-size:clamp(1.42rem, 2.05vw, 1.86rem);font-weight:900;line-height:1.3;color:#ffffff;letter-spacing:-0.015em;margin-bottom:0.4em;">
+      <div style="font-size:clamp(1.42rem, 2.05vw, 1.86rem);font-weight:900;line-height:1.3;color:var(--ink);letter-spacing:-0.015em;margin-bottom:0.4em;">
         "O prompt não é apenas uma pergunta, mas uma instrução estruturada de trabalho. A qualidade da resposta da inteligência artificial reflete com exatidão a <span style="color:#fb923c;">precisão técnica</span> e a <span style="color:#38bdf8;">clareza do pensamento</span> de quem a orienta."
       </div>
       
       <!-- PARÁGRAFO EXPLICATIVO AMPLIADO COM ALTO CONTRASTE -->
-      <p style="color:#f8fafc;font-size:clamp(1.05rem, 1.25vw, 1.2rem);line-height:1.45;margin:0 0 1.25em 0;max-width:96%;font-weight:500;">
+      <p style="color:var(--ink-dim);font-size:clamp(1.05rem, 1.25vw, 1.2rem);line-height:1.45;margin:0 0 1.25em 0;max-width:96%;font-weight:500;">
         Dominar a engenharia de prompts significa transformar a complexidade de autos e contratos em comandos claros, garantindo rigor analítico e segurança probatória na tutela do bem público.
       </p>
 
@@ -2938,13 +2963,13 @@
     <!-- RODAPÉ PERFEITO COM ALTO CONTRASTE -->
     <div class="cover-bottom">
       <div class="cover-credit">
-        <span style="font-size:1.2em;font-weight:900;color:#fb923c;display:inline-block;margin-bottom:2px;letter-spacing:0.01em;">Muito obrigado!</span><br>
-        <b style="color:#ffffff;font-size:1.05em;">Rodrigo Aquino</b> e <b style="color:#ffffff;font-size:1.05em;">Paulo Lima</b><br>
-        <span style="color:#f8fafc;font-weight:600;">27 e 28 de agosto de 2026</span>
+        <span style="font-size:1.2em;font-weight:900;color:var(--orange-ink);display:inline-block;margin-bottom:2px;letter-spacing:0.01em;">Muito obrigado!</span><br>
+        <b style="color:var(--ink);font-size:1.05em;">Rodrigo Aquino</b> e <b style="color:var(--ink);font-size:1.05em;">Paulo Lima</b><br>
+        <span style="color:var(--ink-dim);font-weight:600;">27 e 28 de agosto de 2026</span>
       </div>
       <div class="cover-tag">
-        <b style="color:#fb923c;font-size:1.15em;display:inline-block;letter-spacing:0.02em;font-weight:800;">Escritório de Inteligência Artificial · CIIA / CAODPP</b><br>
-        <span style="color:#f8fafc;font-weight:500;">Comitê de Governança de Inovação e Inteligência Artificial</span><br>
+        <b style="color:var(--orange-ink);font-size:1.15em;display:inline-block;letter-spacing:0.02em;font-weight:800;">Escritório de Inteligência Artificial · CIIA / CAODPP</b><br>
+        <span style="color:var(--ink-dim);font-weight:500;">Comitê de Governança de Inovação e Inteligência Artificial</span><br>
         <span style="color:var(--accent);font-weight:700;">ciia.mppa.mp.br</span>
       </div>
     </div>
@@ -3072,6 +3097,27 @@
       else document.exitFullscreen();
     }
     document.getElementById('btnFull').addEventListener('click', toggleFullscreen);
+
+    /* theme toggle */
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('btnThemeToggle');
+      var KEY = 'theme-preference';
+
+      var saved = localStorage.getItem(KEY);
+      if (saved === 'dark' || saved === 'light') {
+        root.setAttribute('data-theme', saved);
+      }
+
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var current = root.getAttribute('data-theme');
+          var next = (current === 'light') ? 'dark' : 'light';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem(KEY, next);
+        });
+      }
+    })();
 
     /* menu overlay */
     const menuOverlay = document.getElementById('menuOverlay');
